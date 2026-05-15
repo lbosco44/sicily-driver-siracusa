@@ -1,0 +1,73 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Fornite seggiolini o rialzi per bambini?',
+    a: 'Sì, disponibili su richiesta al momento della prenotazione, senza costi aggiuntivi.',
+  },
+  {
+    q: 'Con quanto anticipo devo prenotare?',
+    a: 'Consigliamo almeno 12–24 ore, ma per urgenze proviamo sempre ad accomodare la richiesta.',
+  },
+];
+---
+
+<LandingLayout
+  url="/ncc-ragusa"
+  faqs={faqs}
+  lang="it"
+  service={{ name: 'NCC Ragusa', areaServed: 'Ragusa', description: 'Servizio NCC a Ragusa e Ragusa Ibla. Transfer aeroporto Catania/Comiso, tour Barocco, eventi e matrimoni.' }}
+>
+  <Hero
+    lang="it"
+    compact={true}
+    h1="NCC Ragusa – Transfer Privati e Servizio con Conducente"
+    tagline="Servizio NCC a Ragusa e Ragusa Ibla per transfer privati da/per Aeroporto di Catania e Comiso, tour del Barocco e collegamenti per Siracusa e Noto."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="mb-10">
+          <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contattaci per un preventivo
+          </a>
+        </div>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Perché scegliere il nostro NCC a Ragusa
+        </h2>
+        <ul class="space-y-4 mb-16">
+          {[
+            'Transfer Aeroporto di Catania / Comiso – Ragusa / Ibla',
+            'Tour del Barocco con soste a Noto e Modica',
+            'Servizi business, eventi e matrimoni',
+            'Prenotazioni rapide via form o WhatsApp',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="it" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+      <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+        Prenota ora a Ragusa
+      </a>
+    </div>
+  </section>
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</LandingLayout>

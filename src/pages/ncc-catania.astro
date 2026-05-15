@@ -1,0 +1,78 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Quanto costa un transfer da Catania a Siracusa?',
+    a: 'Le tariffe partono indicativamente da €80–€120 in base a orario, numero passeggeri e veicolo. Scrivici su Contatti per un preventivo preciso in pochi minuti.',
+  },
+  {
+    q: 'È disponibile il servizio notturno?',
+    a: 'Sì, operiamo 24/7. Per voli in tarda notte o di mattina presto consigliamo di prenotare con anticipo.',
+  },
+];
+---
+
+<LandingLayout
+  url="/ncc-catania"
+  faqs={faqs}
+  lang="it"
+  service={{ name: 'NCC Catania', areaServed: 'Catania', description: 'Servizio NCC a Catania: transfer aeroporto CTA, tour personalizzati, autista privato Mercedes.' }}
+>
+  <Hero
+    lang="it"
+    compact={true}
+    h1="NCC Catania – Transfer Aeroporto e Autista Privato"
+    tagline="Servizio NCC professionale da e per Catania, inclusi transfer dall'Aeroporto di Catania verso Siracusa, Noto, Ragusa e Taormina. Veicoli Mercedes, autisti professionisti, servizio 24/7."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+
+        <div class="mb-10">
+          <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contattaci per un preventivo
+          </a>
+        </div>
+
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Perché scegliere il nostro NCC a Catania
+        </h2>
+
+        <ul class="space-y-4 mb-16">
+          {[
+            'Transfer privati Aeroporto di Catania – Siracusa / Noto / Ragusa / Taormina',
+            'Servizio business, turismo, matrimoni ed eventi',
+            'Mercedes Classe V e GLB Premium, comfort e sicurezza',
+            'Prenotazioni rapide con conferma immediata',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="it" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="text-center">
+        <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+          Prenota ora a Catania
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</LandingLayout>

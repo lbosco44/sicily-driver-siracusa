@@ -1,0 +1,65 @@
+---
+import { getSeoData } from '../lib/seo';
+import { localBusinessSchema, faqSchema, serviceSchema, type FaqItem } from '../lib/schema';
+import LenisProvider from '../components/react/LenisProvider';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/app.css';
+
+interface Props {
+  url: string;
+  faqs?: FaqItem[];
+  service?: { name: string; areaServed: string; description: string };
+  lang?: 'it' | 'en';
+}
+
+const { url, faqs, service, lang = 'it' } = Astro.props;
+const seo = getSeoData(url);
+
+const schemas: object[] = [localBusinessSchema()];
+if (faqs && faqs.length > 0) schemas.push(faqSchema(faqs));
+if (service) schemas.push(serviceSchema(service.name, service.areaServed, service.description));
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1928" />
+
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={seo.canonical} />
+
+    {seo.hreflang.map((h) => (
+      <link rel="alternate" hreflang={h.lang} href={h.url} />
+    ))}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=fraunces@400,500,600,700&f[]=switzer@400,500,600&display=swap"
+      rel="stylesheet"
+    />
+
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.ncctaxisiracusa.com/images/hero-desktop.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="font-body bg-parchment-50 text-ink-black-950">
+    <LenisProvider client:load />
+    <Header lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

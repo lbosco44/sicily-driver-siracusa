@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ContactForm from '../../components/react/ContactForm';
+import WhatsAppSticky from '../../components/WhatsAppSticky.astro';
+---
+
+<Layout url="/en/contatti" lang="en">
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Contact Us"
+    tagline="Write to us for quotes or information; we will respond within 24 hours!"
+  />
+
+  <section class="bg-parchment-50 py-24 md:py-40">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+        <div>
+          <h2 class="font-display text-ink-black-900 font-medium text-[clamp(24px,3vw,40px)] tracking-tight mb-8">
+            Locations & Details
+          </h2>
+          <div class="space-y-6 mb-10">
+            {[
+              { city: 'Syracuse', addr: 'Via della Maestranza, 28' },
+              { city: 'Noto', addr: 'Via Alcide De Gasperi, 15' },
+              { city: 'Marzamemi', addr: 'Via Marzamemi, 23' },
+            ].map((loc) => (
+              <div class="flex items-start gap-4">
+                <div class="w-2 h-2 rounded-full bg-golden-bronze-500 mt-2 flex-shrink-0"></div>
+                <div>
+                  <p class="font-medium text-ink-black-900 text-base">{loc.city}</p>
+                  <p class="text-ink-black-600 text-sm">{loc.addr}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="space-y-3 text-sm mb-10">
+            <p class="text-ink-black-700"><span class="font-medium text-ink-black-900">VAT Number:</span> 02150600894</p>
+            <p><a href="mailto:info@ncctaxisiracusa.com" class="text-golden-bronze-600 hover:underline">info@ncctaxisiracusa.com</a></p>
+            <p class="text-ink-black-600 text-xs">Certified Email (PEC): izzo.v@pec.it</p>
+            <p><a href="tel:+393756413379" class="text-golden-bronze-600 hover:underline font-medium">+39 375 641 3379</a></p>
+          </div>
+          <div class="rounded-sm overflow-hidden border border-ink-black-200/40" style="height: 280px;">
+            <iframe
+              title="Sicily Driver Syracuse map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=15.27%2C37.05%2C15.31%2C37.08&layer=mapnik&marker=37.0633%2C15.2932"
+              width="100%"
+              height="280"
+              style="border: none;"
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-display text-ink-black-900 font-medium text-[clamp(24px,3vw,40px)] tracking-tight mb-8">
+            Your Message
+          </h2>
+          <ContactForm client:visible lang="en" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <WhatsAppSticky lang="en" />
+</Layout>

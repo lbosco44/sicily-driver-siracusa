@@ -1,0 +1,73 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'How much is a transfer Catania Airport to Siracusa?',
+    a: 'Prices usually start from €80–€120 depending on time, passengers and vehicle. Send your request on the contact page for an exact quote.',
+  },
+  {
+    q: 'Do you operate at night?',
+    a: 'Yes, 24/7 service. For late-night/early-morning flights we recommend booking in advance.',
+  },
+];
+---
+
+<LandingLayout
+  url="/driver-catania"
+  faqs={faqs}
+  lang="en"
+  service={{ name: 'Private Driver Catania', areaServed: 'Catania', description: 'Private driver in Catania for airport transfers (CTA) to Siracusa, Noto, Taormina, Ragusa.' }}
+>
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Private Driver Catania – Airport Transfer & Chauffeur Service"
+    tagline="Private driver in Catania for airport transfers (CTA) and custom trips to Siracusa, Noto, Taormina and Ragusa. Mercedes vehicles, English-speaking chauffeurs, 24/7 service."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="mb-10">
+          <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contact your driver
+          </a>
+        </div>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Why choose our private driver in Catania
+        </h2>
+        <ul class="space-y-4 mb-16">
+          {[
+            'Catania Airport (CTA) → Siracusa / Noto / Ragusa / Taormina',
+            'Business travel, tourism, weddings and events',
+            'Mercedes vans and SUVs, comfort and safety',
+            'Fast quotes and instant confirmation',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="en" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+      <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+        Get a quote in Catania
+      </a>
+    </div>
+  </section>
+
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</LandingLayout>

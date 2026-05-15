@@ -1,17 +1,57 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiziSection from '../components/ServiziSection.astro';
+import DestinazioniSection from '../components/DestinazioniSection.astro';
+import ChiSiamoSection from '../components/ChiSiamoSection.astro';
+import ComeFunziona from '../components/ComeFunziona.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
 
+const faqs = [
+  {
+    q: 'Quanto costa un transfer aeroporto Catania?',
+    a: 'I prezzi partono da €80 a tratta per il servizio NCC con Mercedes Classe V, variabili in base alla tratta e al numero di passeggeri.',
+  },
+  {
+    q: 'Posso prenotare un tour Barocco in giornata?',
+    a: 'Sì: offriamo tour di 4–8 ore con guida opzionale; l\'itinerario è personalizzabile e include Noto, Modica, Ragusa Ibla.',
+  },
+  {
+    q: 'Avete un servizio taxi privato notturno?',
+    a: 'Certamente: il nostro NCC è attivo 24/7, perfetto anche per transfer serali verso ristoranti, eventi o aeroporti.',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout url="/" faqs={faqs} lang="it">
+  <Hero
+    lang="it"
+    h1="Sicily Driver Siracusa"
+    tagline="NCC di lusso in Sicilia"
+    ctaPrimary={{ label: 'Richiedi un preventivo', href: '/contatti' }}
+    ctaSecondary={{ label: 'Scopri i tour', href: '/tour-sicilia' }}
+  />
+
+  <!-- Tagline strip -->
+  <div class="bg-deep-space-blue-800 py-6 px-5 md:px-10">
+    <p class="max-w-[1360px] mx-auto text-parchment-100 text-center text-sm md:text-base font-body font-medium tracking-wide">
+      Eleganza da VIP, prezzi di mercato: il tuo NCC di lusso a tariffe accessibili.
+    </p>
+  </div>
+
+  <ServiziSection lang="it" />
+  <DestinazioniSection lang="it" />
+  <ChiSiamoSection lang="it" />
+  <ComeFunziona lang="it" />
+
+  <FAQ
+    lang="it"
+    faqs={faqs}
+    dark={false}
+  />
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</Layout>

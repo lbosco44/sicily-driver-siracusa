@@ -1,0 +1,73 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Do you offer child seats?',
+    a: 'Yes, on request during booking, at no extra cost.',
+  },
+  {
+    q: 'How early should we book?',
+    a: 'We suggest 12–24 hours in advance; for urgent requests we do our best to accommodate.',
+  },
+];
+---
+
+<LandingLayout
+  url="/driver-ragusa"
+  faqs={faqs}
+  lang="en"
+  service={{ name: 'Private Driver Ragusa', areaServed: 'Ragusa', description: 'Private driver in Ragusa and Ragusa Ibla for Catania and Comiso airport transfers and Baroque tours.' }}
+>
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Private Driver Ragusa – Chauffeur & Airport Transfers"
+    tagline="Private driver in Ragusa and Ragusa Ibla for transfers to/from Catania and Comiso Airport, Baroque tours and connections to Siracusa and Noto."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="mb-10">
+          <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contact your driver
+          </a>
+        </div>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Why choose our private driver in Ragusa
+        </h2>
+        <ul class="space-y-4 mb-16">
+          {[
+            'Catania / Comiso Airport → Ragusa / Ibla',
+            'Baroque tour with stops in Noto and Modica',
+            'Business, events and wedding transport',
+            'Fast booking via contact form or WhatsApp',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="en" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+      <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+        Get a quote in Ragusa
+      </a>
+    </div>
+  </section>
+
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</LandingLayout>

@@ -1,0 +1,51 @@
+{
+  "redirects": [
+    { "source": "/index.php", "destination": "/", "permanent": true },
+    { "source": "/chi-siamo.php", "destination": "/chi-siamo", "permanent": true },
+    { "source": "/servizi.php", "destination": "/servizi", "permanent": true },
+    { "source": "/tour-sicilia.php", "destination": "/tour-sicilia", "permanent": true },
+    { "source": "/tour-barocco.php", "destination": "/tour-barocco", "permanent": true },
+    { "source": "/contatti.php", "destination": "/contatti", "permanent": true },
+    { "source": "/flotta.php", "destination": "/servizi", "permanent": true },
+    { "source": "/tour.php", "destination": "/tour-sicilia", "permanent": true },
+    { "source": "/ncc-catania.php", "destination": "/ncc-catania", "permanent": true },
+    { "source": "/ncc-noto.php", "destination": "/ncc-noto", "permanent": true },
+    { "source": "/ncc-taormina.php", "destination": "/ncc-taormina", "permanent": true },
+    { "source": "/ncc-ragusa.php", "destination": "/ncc-ragusa", "permanent": true },
+    { "source": "/driver-catania.php", "destination": "/driver-catania", "permanent": true },
+    { "source": "/driver-noto.php", "destination": "/driver-noto", "permanent": true },
+    { "source": "/driver-taormina.php", "destination": "/driver-taormina", "permanent": true },
+    { "source": "/driver-ragusa.php", "destination": "/driver-ragusa", "permanent": true },
+    { "source": "/index-en.php", "destination": "/en/", "permanent": true },
+    { "source": "/chi-siamo-en.php", "destination": "/en/chi-siamo", "permanent": true },
+    { "source": "/servizi-en.php", "destination": "/en/servizi", "permanent": true },
+    { "source": "/tour-sicilia-en.php", "destination": "/en/tour-sicilia", "permanent": true },
+    { "source": "/tour-barocco-en.php", "destination": "/en/tour-barocco", "permanent": true },
+    { "source": "/contatti-en.php", "destination": "/en/contatti", "permanent": true },
+    { "source": "/contact-en.php", "destination": "/en/contatti", "permanent": true },
+    { "source": "/contact.php", "destination": "/en/contatti", "permanent": true },
+    { "source": "/sicily-tours.php", "destination": "/en/tour-sicilia", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

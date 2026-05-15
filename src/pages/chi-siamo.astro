@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+---
+
+<Layout url="/chi-siamo" lang="it">
+  <Hero
+    lang="it"
+    compact={true}
+    h1="Chi Siamo | Sicily Driver Syracuse"
+    tagline="Esperienza e passione nel noleggio con conducente in Sicilia"
+  />
+
+  <section class="bg-parchment-50 py-24 md:py-40">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <h2 class="font-display text-ink-black-900 font-medium text-[clamp(28px,4vw,52px)] leading-tight tracking-tight mb-10">
+          La nostra storia
+        </h2>
+        <div class="space-y-6 text-ink-black-700 text-lg leading-relaxed">
+          <p>
+            Sicily Driver Syracuse è una realtà giovane e dinamica, nata dalla passione per i servizi di NCC e transfer di alta qualità. Con una solida esperienza maturata nell'organizzazione di percorsi personalizzati, offriamo soluzioni su misura per privati e aziende che desiderano viaggiare con comfort e sicurezza.
+          </p>
+          <p>
+            Grazie al nostro parco auto selezionato e all'attenzione al dettaglio, garantiamo puntualità e cortesia in ogni spostamento. Il nostro team è formato da professionisti del trasporto che conoscono a fondo le esigenze dei clienti, pronti a supportarti 24/7 durante il tuo viaggio.
+          </p>
+          <p>
+            Scegliere Sicily Driver Syracuse significa affidarsi a un partner dedicato: dai transfer aeroportuali, ai servizi NCC per eventi, fino alle escursioni e tour privati. Siamo al tuo fianco per rendere ogni spostamento un'esperienza piacevole e senza pensieri.
+          </p>
+        </div>
+        <div class="mt-12 border-l-2 border-golden-bronze-500 pl-6">
+          <p class="font-display text-ink-black-900 text-2xl font-medium tracking-tight mb-1">Mercedes Classe V, GLB Premium, Classe E</p>
+          <p class="text-ink-black-500 text-sm">Servizio 24/7 — Siracusa, Noto, Marzamemi</p>
+        </div>
+        <div class="mt-12">
+          <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contattaci
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</Layout>

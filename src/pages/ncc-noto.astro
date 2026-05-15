@@ -1,0 +1,73 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Quanto dura un tour Barocco da Noto?',
+    a: 'In media 6–8 ore, con possibilità di personalizzare tappe e tempi in base alle preferenze.',
+  },
+  {
+    q: 'Posso aggiungere una degustazione?',
+    a: 'Certo: possiamo includere cantine, oleifici o soste gastronomiche su richiesta.',
+  },
+];
+---
+
+<LandingLayout
+  url="/ncc-noto"
+  faqs={faqs}
+  lang="it"
+  service={{ name: 'NCC Noto', areaServed: 'Noto', description: 'NCC a Noto con transfer aeroporto e tour Barocco. Auto Mercedes premium, servizio professionale.' }}
+>
+  <Hero
+    lang="it"
+    compact={true}
+    h1="NCC Noto – Transfer Privati e Tour Barocco"
+    tagline="Servizio NCC a Noto per transfer da/per aeroporti (Catania, Comiso) e tour nel Val di Noto: Noto, Modica, Ragusa Ibla e Marzamemi."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="mb-10">
+          <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contattaci per un preventivo
+          </a>
+        </div>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Perché scegliere il nostro NCC a Noto
+        </h2>
+        <ul class="space-y-4 mb-16">
+          {[
+            'Transfer Aeroporto di Catania / Comiso – Noto',
+            'Tour Barocco: Noto, Modica, Ragusa Ibla',
+            'Soste fotografiche e tempo libero su misura',
+            'Servizio per eventi e matrimoni nell\'area di Noto',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="it" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+      <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+        Prenota ora a Noto
+      </a>
+    </div>
+  </section>
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</LandingLayout>

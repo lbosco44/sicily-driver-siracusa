@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTAForm from '../../components/CTAForm.astro';
+import WhatsAppSticky from '../../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Can we customize the stops?',
+    a: 'Yes, every tour is flexible: photo spots, free time, tastings and guided visits on request.',
+  },
+  {
+    q: 'How long does a typical tour last?',
+    a: 'From 6 to 9 hours depending on the itinerary. For longer routes we can extend to a full day.',
+  },
+  {
+    q: 'Are child seats available?',
+    a: 'Yes, just request them when booking. Included at no extra cost.',
+  },
+];
+---
+
+<Layout url="/en/tour-sicilia" faqs={faqs} lang="en">
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Sicily Private Tours with Driver"
+    tagline="Discover Sicily with a dedicated private driver. Tailor-made itineraries, Mercedes vehicles and English-speaking chauffeurs. Departures from Siracusa, Catania, Noto, Ragusa and Taormina – 24/7."
+  />
+
+  <section class="bg-parchment-50 py-24 md:py-40">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <h2 class="font-display text-ink-black-900 font-medium text-[clamp(24px,3.5vw,44px)] leading-tight tracking-tight mb-10">
+        Popular tours
+      </h2>
+
+      <div class="space-y-10 mb-16">
+        {[
+          {
+            title: 'Baroque Towns – Noto, Modica, Ragusa Ibla',
+            body: '6–8 hours with flexible stops, free time and local tips. Optional traditional lunch or sweet tasting.',
+          },
+          {
+            title: 'Etna & Wineries – Wine Experience',
+            body: 'Drive up to the Silvestri craters (1,900 m) and visit a winery for tastings. Can be combined with Taormina.',
+          },
+          {
+            title: 'Ortigia & Taormina – Highlights',
+            body: 'Stroll historic lanes, enjoy panoramic terraces and curated shopping stops. Perfect for couples and families.',
+          },
+        ].map((tour) => (
+          <div class="border border-ink-black-200/40 rounded-sm p-8 hover:border-golden-bronze-500/40 transition-colors duration-300">
+            <h3 class="font-display text-ink-black-900 font-medium text-2xl tracking-tight mb-3">{tour.title}</h3>
+            <p class="text-ink-black-700 text-lg leading-relaxed">{tour.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="border-t border-ink-black-200/40 pt-12">
+        <h2 class="font-display text-ink-black-900 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">How it works</h2>
+        <ol class="space-y-5">
+          {[
+            'Tell us your date, party size and preferences.',
+            'We design a custom itinerary with timing and stops.',
+            'Dedicated driver, flexible hours, Mercedes comfort.',
+          ].map((step, i) => (
+            <li class="flex items-start gap-5 text-ink-black-700 text-lg">
+              <span class="font-display text-3xl text-golden-bronze-500/50 leading-none font-light flex-shrink-0 select-none">{i + 1}</span>
+              {step}
+            </li>
+          ))}
+        </ol>
+        <div class="mt-10">
+          <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contact us – fast quotes via WhatsApp or email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="en" dark={false} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <p class="text-parchment-200 text-sm mb-3">
+        Private driver pages:{' '}
+        <a href="/driver-catania" class="text-golden-bronze-400 hover:underline">Catania</a>,{' '}
+        <a href="/driver-noto" class="text-golden-bronze-400 hover:underline">Noto</a>,{' '}
+        <a href="/driver-taormina" class="text-golden-bronze-400 hover:underline">Taormina</a>,{' '}
+        <a href="/driver-ragusa" class="text-golden-bronze-400 hover:underline">Ragusa</a>.
+      </p>
+      <p class="text-parchment-200 text-sm">
+        Italian pages:{' '}
+        <a href="/ncc-catania" class="text-golden-bronze-400 hover:underline">NCC Catania</a>,{' '}
+        <a href="/ncc-noto" class="text-golden-bronze-400 hover:underline">NCC Noto</a>,{' '}
+        <a href="/ncc-taormina" class="text-golden-bronze-400 hover:underline">NCC Taormina</a>,{' '}
+        <a href="/ncc-ragusa" class="text-golden-bronze-400 hover:underline">NCC Ragusa</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</Layout>

@@ -1,0 +1,73 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'How long is a Baroque Tour from Noto?',
+    a: 'Usually 6–8 hours, with flexible stops and timing based on your preferences.',
+  },
+  {
+    q: 'Can we add a wine tasting?',
+    a: 'Of course. We can include wineries or gourmet stops on request.',
+  },
+];
+---
+
+<LandingLayout
+  url="/driver-noto"
+  faqs={faqs}
+  lang="en"
+  service={{ name: 'Private Driver Noto', areaServed: 'Noto', description: 'Private chauffeur in Noto for airport transfers and Baroque tour. Mercedes vans, professional driver.' }}
+>
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Private Driver Noto – Transfers & Baroque Tour"
+    tagline="Private driver in Noto for transfers from Catania or Comiso airport and Baroque Valley tours: Noto, Modica, Ragusa Ibla and Marzamemi."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="mb-10">
+          <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contact your driver
+          </a>
+        </div>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Why choose our private driver in Noto
+        </h2>
+        <ul class="space-y-4 mb-16">
+          {[
+            'Airport transfers: Catania / Comiso → Noto',
+            'Baroque Tour: Noto, Modica, Ragusa Ibla',
+            'Photo stops and free time tailored to you',
+            'Wedding and event transport in Noto area',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="en" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+      <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+        Get a quote in Noto
+      </a>
+    </div>
+  </section>
+
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</LandingLayout>

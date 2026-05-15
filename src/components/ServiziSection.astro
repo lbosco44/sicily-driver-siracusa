@@ -1,0 +1,203 @@
+---
+interface Props {
+  lang?: 'it' | 'en';
+}
+const { lang = 'it' } = Astro.props;
+const isIT = lang === 'it';
+
+const servizi = isIT
+  ? [
+      {
+        num: '01',
+        img: '/images/servizi-01-transfer.webp',
+        alt: 'Transfer aeroportuale con Mercedes',
+        h2: 'Transfer Aeroportuali & Point-to-Point',
+        items: [
+          'Servizio da/per aeroporti: Catania, Comiso, Palermo',
+          'Transfer da/per porti: Siracusa, Pozzallo',
+          'Pick-up e drop-off flessibili h24',
+        ],
+      },
+      {
+        num: '02',
+        img: '/images/servizi-02-tour.webp',
+        alt: 'Tour privato in Sicilia',
+        h2: 'Tour Personalizzati in Sicilia',
+        body: 'Itinerari su misura, pick-up e drop-off dove vuoi. Scopri storia, paesaggi e sapori con un autista-guida esperto.',
+        cta: { label: 'Scopri i tour', href: '/tour-sicilia' },
+      },
+      {
+        num: '03',
+        img: '/images/servizi-03-eventi.webp',
+        alt: 'Noleggio per eventi e business',
+        h2: 'Noleggio per Eventi & Business',
+        items: [
+          'Meeting e trasferimenti aziendali',
+          'Matrimoni, cerimonie ed eventi speciali',
+          'Congressi e fiere con supporto logistico',
+        ],
+      },
+    ]
+  : [
+      {
+        num: '01',
+        img: '/images/servizi-01-transfer.webp',
+        alt: 'Airport transfer with Mercedes',
+        h2: 'Airport Transfers & Point-to-Point',
+        items: [
+          'Catania Airport → Siracusa / Noto / Ragusa / Taormina',
+          'Comiso, Palermo, Trapani on request',
+          'Mercedes vans & SUVs (V-Class, GLB, E-Class)',
+        ],
+      },
+      {
+        num: '02',
+        img: '/images/servizi-02-tour.webp',
+        alt: 'Private tour in Sicily',
+        h2: 'Private Tours in Sicily',
+        body: 'Custom itineraries with a dedicated driver: Baroque towns, Etna & wineries, Ortigia and Taormina highlights.',
+        cta: { label: 'Explore our tours', href: '/en/tour-sicilia' },
+      },
+      {
+        num: '03',
+        img: '/images/servizi-03-eventi.webp',
+        alt: 'Events & Business rental',
+        h2: 'Events & Business',
+        items: [
+          'Corporate travel and meetings',
+          'Weddings, ceremonies and VIP events',
+          'On-site logistics for congresses and fairs',
+        ],
+      },
+    ];
+---
+
+<section class="bg-parchment-50 py-24 md:py-40">
+  <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+
+    <!-- Section header -->
+    <div class="flex items-baseline gap-6 mb-16 md:mb-24">
+      <span class="font-display text-[80px] md:text-[120px] font-light text-ink-black-950/20 leading-none select-none" aria-hidden="true">01</span>
+      <div>
+        <p class="text-golden-bronze-600 text-xs font-body font-medium tracking-[0.25em] uppercase mb-2">
+          {isIT ? 'Il Servizio' : 'Our Service'}
+        </p>
+        <h2 class="font-display text-ink-black-900 font-medium text-[clamp(28px,4vw,52px)] leading-tight tracking-tight">
+          {isIT ? 'I nostri Servizi' : 'Our Services'}
+        </h2>
+      </div>
+    </div>
+
+    <!-- Service blocks -->
+    <div class="space-y-20 md:space-y-32" id="servizi-blocks">
+      {servizi.map((s, i) => (
+        <div
+          class:list={[
+            'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center servizi-block',
+            i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : '',
+          ]}
+          data-index={i}
+        >
+          <!-- Image -->
+          <div class="relative overflow-hidden rounded-sm aspect-[3/4] md:aspect-auto md:h-[480px]">
+            <img
+              src={s.img}
+              alt={s.alt}
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Text -->
+          <div class="flex flex-col justify-center">
+            <span class="font-display text-[56px] font-light text-golden-bronze-400/30 leading-none mb-4 select-none" aria-hidden="true">
+              {s.num}
+            </span>
+            <h3 class="font-display text-ink-black-900 font-medium text-[clamp(22px,3vw,36px)] leading-tight tracking-tight mb-5">
+              {s.h2}
+            </h3>
+            {'body' in s && s.body && (
+              <p class="text-ink-black-700 text-lg leading-relaxed mb-6">{s.body}</p>
+            )}
+            {'items' in s && s.items && (
+              <ul class="space-y-3 mb-6">
+                {s.items.map((item) => (
+                  <li class="flex items-start gap-3 text-ink-black-700">
+                    <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+                    <span class="text-base leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {'cta' in s && s.cta && (
+              <a
+                href={s.cta.href}
+                class="inline-flex items-center gap-2 text-golden-bronze-600 font-medium text-base hover:gap-4 transition-all duration-300 group"
+              >
+                {s.cta.label}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Why choose us -->
+    <div class="mt-24 md:mt-40 pt-16 border-t border-ink-black-200/40">
+      <h3 class="font-display text-ink-black-900 font-medium text-[clamp(24px,3vw,40px)] tracking-tight mb-10">
+        {isIT ? 'Perché Sceglierci?' : 'Why choose us?'}
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {(isIT ? [
+          'Autisti certificati e multilingue',
+          'Veicoli sempre sanificati e controllati',
+          'Assistenza 24/7 e supporto clienti dedicato',
+          'Itinerari esclusivi e personalizzati',
+        ] : [
+          'Certified, English-speaking drivers',
+          'Mercedes vehicles, sanitized and checked',
+          '24/7 assistance and fast confirmations',
+          'Exclusive, tailor-made itineraries',
+        ]).map((item) => (
+          <div class="flex items-start gap-4 p-6 bg-parchment-100 rounded-sm">
+            <div class="w-8 h-8 rounded-full bg-golden-bronze-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4993b" stroke-width="2.5" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <p class="text-ink-black-800 text-sm leading-relaxed font-medium">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Intersection Observer reveal for servizi blocks
+  const blocks = document.querySelectorAll('.servizi-block');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  blocks.forEach((block, i) => {
+    const el = block as HTMLElement;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(40px)';
+    el.style.transition = `opacity 0.7s ease ${i * 0.15}s, transform 0.7s ease ${i * 0.15}s`;
+    observer.observe(el);
+  });
+</script>

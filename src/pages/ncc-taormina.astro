@@ -1,0 +1,73 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Effettuate transfer Taormina – Aeroporto di Catania?',
+    a: 'Sì, con monitoraggio volo e orari flessibili. Autista in attesa all\'uscita arrivi.',
+  },
+  {
+    q: 'È possibile un tour Etna + Taormina in giornata?',
+    a: 'Assolutamente sì: programma tipico 6–8 ore, con soste personalizzate.',
+  },
+];
+---
+
+<LandingLayout
+  url="/ncc-taormina"
+  faqs={faqs}
+  lang="it"
+  service={{ name: 'NCC Taormina', areaServed: 'Taormina', description: 'NCC per Taormina con transfer aeroporto Catania e tour Etna. Mercedes Classe V, servizio VIP 24/7.' }}
+>
+  <Hero
+    lang="it"
+    compact={true}
+    h1="NCC Taormina – Transfer di Lusso e Tour Etna"
+    tagline="NCC per Taormina con transfer da/per Aeroporto di Catania, Siracusa e tutta la costa ionica. Opzione Tour Etna con degustazione in cantina e soste panoramiche."
+  />
+
+  <section class="bg-deep-space-blue-900 py-20 md:py-32">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="mb-10">
+          <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+            Contattaci per un preventivo
+          </a>
+        </div>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(22px,3vw,38px)] tracking-tight mb-8">
+          Perché scegliere il nostro NCC a Taormina
+        </h2>
+        <ul class="space-y-4 mb-16">
+          {[
+            'Transfer Aeroporto Catania – Taormina / Giardini Naxos',
+            'Etna Experience con degustazione vini',
+            'Veicoli premium con autista professionista',
+            'Servizio VIP per hotel e wedding',
+          ].map((item) => (
+            <li class="flex items-start gap-4 text-parchment-100 text-lg">
+              <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="it" dark={true} />
+
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+      <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+        Prenota ora a Taormina
+      </a>
+    </div>
+  </section>
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</LandingLayout>

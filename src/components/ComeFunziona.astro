@@ -1,0 +1,131 @@
+---
+interface Props {
+  lang?: 'it' | 'en';
+}
+const { lang = 'it' } = Astro.props;
+const isIT = lang === 'it';
+
+const steps = isIT
+  ? [
+      {
+        num: '01',
+        title: 'Ci dici data, persone e preferenze',
+        body: 'Scrivi via form, WhatsApp o email. Rispondiamo entro poche ore con una proposta su misura.',
+      },
+      {
+        num: '02',
+        title: 'Proponiamo un itinerario personalizzato',
+        body: 'Costruiamo il percorso con tempistiche, soste e consigli locali. Ogni dettaglio è concordato con te.',
+      },
+      {
+        num: '03',
+        title: 'Autista dedicato, Mercedes, nessun pensiero',
+        body: 'Il giorno concordato il tuo autista è puntuale. Goditi la Sicilia in totale comfort, 24/7.',
+      },
+    ]
+  : [
+      {
+        num: '01',
+        title: 'Tell us your date, party size and preferences',
+        body: 'Write via form, WhatsApp or email. We reply within a few hours with a tailored proposal.',
+      },
+      {
+        num: '02',
+        title: 'We design a custom itinerary',
+        body: 'We build your route with timing, stops and local tips. Every detail is agreed with you.',
+      },
+      {
+        num: '03',
+        title: 'Dedicated driver, Mercedes, zero stress',
+        body: 'On the agreed day your driver is punctual. Enjoy Sicily in total comfort, 24/7.',
+      },
+    ];
+---
+
+<section class="bg-deep-space-blue-900 py-24 md:py-40">
+  <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+
+    <!-- Section header -->
+    <div class="mb-16 md:mb-20">
+      <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.25em] uppercase mb-3">
+        {isIT ? 'Il Processo' : 'How it works'}
+      </p>
+      <h2 class="font-display text-parchment-50 font-medium text-[clamp(28px,4vw,52px)] leading-tight tracking-tight">
+        {isIT ? 'Come funziona' : 'How it works'}
+      </h2>
+    </div>
+
+    <!-- Steps — desktop side by side, mobile stack -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" id="come-funziona-steps">
+      {steps.map((step, i) => (
+        <div
+          class="step-card border border-parchment-50/10 rounded-sm p-8 md:p-10 flex flex-col gap-6 hover:border-golden-bronze-500/40 transition-all duration-300"
+          data-index={i}
+        >
+          <!-- Step placeholder (no image) -->
+          <div class="h-32 rounded-sm bg-deep-space-blue-800/80 flex items-center justify-center mb-2">
+            <span class="font-display text-[72px] font-light text-golden-bronze-500/25 leading-none select-none" aria-hidden="true">
+              {step.num}
+            </span>
+          </div>
+          <div>
+            <span class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.2em] uppercase block mb-3">
+              {isIT ? `Passo ${step.num}` : `Step ${step.num}`}
+            </span>
+            <h3 class="font-display text-parchment-50 font-medium text-xl md:text-2xl leading-tight tracking-tight mb-4">
+              {step.title}
+            </h3>
+            <p class="text-parchment-200 text-base leading-relaxed">
+              {step.body}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a
+        href={isIT ? '/contatti' : '/en/contatti'}
+        class="inline-flex items-center gap-3 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium text-base px-10 py-5 rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+      >
+        {isIT ? 'Richiedi il tuo preventivo' : 'Request your quote'}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const steps = document.querySelectorAll('.step-card');
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (!mediaQuery.matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const idx = parseInt(el.getAttribute('data-index') ?? '0');
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, idx * 150);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    steps.forEach((step) => {
+      const el = step as HTMLElement;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(32px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  }
+</script>

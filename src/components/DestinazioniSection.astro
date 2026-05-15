@@ -1,0 +1,191 @@
+---
+interface Props {
+  lang?: 'it' | 'en';
+}
+const { lang = 'it' } = Astro.props;
+const isIT = lang === 'it';
+
+const destinazioni = [
+  {
+    img: '/images/dest-01-ortigia.webp',
+    nameIT: 'Ortigia',
+    nameEN: 'Ortigia',
+    subIT: 'Siracusa',
+    subEN: 'Syracuse',
+    href: '/ncc-catania',
+    hrefEN: '/driver-catania',
+  },
+  {
+    img: '/images/dest-02-noto.webp',
+    nameIT: 'Noto',
+    nameEN: 'Noto',
+    subIT: 'Val di Noto',
+    subEN: 'Baroque Valley',
+    href: '/ncc-noto',
+    hrefEN: '/driver-noto',
+  },
+  {
+    img: '/images/dest-03-taormina.webp',
+    nameIT: 'Taormina',
+    nameEN: 'Taormina',
+    subIT: 'Costa Ionica',
+    subEN: 'Ionian Coast',
+    href: '/ncc-taormina',
+    hrefEN: '/driver-taormina',
+  },
+  {
+    img: '/images/dest-04-ragusa.webp',
+    nameIT: 'Ragusa Ibla',
+    nameEN: 'Ragusa Ibla',
+    subIT: 'Barocco',
+    subEN: 'Baroque',
+    href: '/ncc-ragusa',
+    hrefEN: '/driver-ragusa',
+  },
+  {
+    img: '/images/dest-05-etna.webp',
+    nameIT: 'Etna',
+    nameEN: 'Mount Etna',
+    subIT: 'Vulcano & Vino',
+    subEN: 'Volcano & Wine',
+    href: '/tour-sicilia',
+    hrefEN: '/en/tour-sicilia',
+  },
+  {
+    img: null,
+    nameIT: 'Marzamemi',
+    nameEN: 'Marzamemi',
+    subIT: 'Mare & Tonnara',
+    subEN: 'Sea & Tonnara',
+    href: '/tour-sicilia',
+    hrefEN: '/en/tour-sicilia',
+    placeholder: true,
+  },
+];
+---
+
+<section class="bg-deep-space-blue-900 py-24 md:py-40">
+  <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+
+    <!-- Section header -->
+    <div class="flex items-baseline gap-6 mb-16 md:mb-24">
+      <span class="font-display text-[80px] md:text-[120px] font-light text-parchment-50/10 leading-none select-none" aria-hidden="true">02</span>
+      <div>
+        <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.25em] uppercase mb-2">
+          {isIT ? 'Le Mete' : 'Destinations'}
+        </p>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(28px,4vw,52px)] leading-tight tracking-tight">
+          {isIT ? 'Destinazioni' : 'Our Destinations'}
+        </h2>
+      </div>
+    </div>
+
+    <!-- Desktop grid 3×2 -->
+    <div class="hidden md:grid grid-cols-3 gap-4" id="dest-grid">
+      {destinazioni.map((d, i) => (
+        <a
+          href={isIT ? d.href : d.hrefEN}
+          class="dest-card group relative overflow-hidden rounded-sm aspect-[2/3] block"
+          data-index={i}
+        >
+          {d.img ? (
+            <img
+              src={d.img}
+              alt={isIT ? `${d.nameIT}, Sicilia` : `${d.nameEN}, Sicily`}
+              class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+          ) : (
+            <div class="absolute inset-0 bg-gradient-to-br from-deep-space-blue-800 to-deep-space-blue-950 flex items-center justify-center">
+              <span class="font-display text-parchment-50/20 text-6xl font-light select-none">
+                {isIT ? d.nameIT[0] : d.nameEN[0]}
+              </span>
+            </div>
+          )}
+
+          <!-- Permanent dark gradient -->
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-deep-space-blue-950/80"></div>
+
+          <!-- Hover veil -->
+          <div class="absolute inset-0 bg-golden-bronze-500/0 group-hover:bg-golden-bronze-500/25 transition-all duration-500 translate-y-full group-hover:translate-y-0"></div>
+
+          <!-- Name -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
+            <p class="text-parchment-200 text-xs font-body font-medium tracking-[0.2em] uppercase mb-1">
+              {isIT ? d.subIT : d.subEN}
+            </p>
+            <h3 class="font-display text-parchment-50 font-medium text-2xl md:text-3xl tracking-tight leading-tight">
+              {isIT ? d.nameIT : d.nameEN}
+            </h3>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile: swipeable list -->
+    <div class="md:hidden -mx-5">
+      <div class="flex gap-4 overflow-x-auto pb-6 px-5 snap-x snap-mandatory scroll-smooth" style="scrollbar-width: none;">
+        {destinazioni.map((d) => (
+          <a
+            href={isIT ? d.href : d.hrefEN}
+            class="dest-card-mobile group relative flex-shrink-0 w-72 rounded-sm overflow-hidden snap-start"
+            style="aspect-ratio: 2/3"
+          >
+            {d.img ? (
+              <img
+                src={d.img}
+                alt={isIT ? `${d.nameIT}, Sicilia` : `${d.nameEN}, Sicily`}
+                class="absolute inset-0 w-full h-full object-cover object-center"
+                loading="lazy"
+              />
+            ) : (
+              <div class="absolute inset-0 bg-gradient-to-br from-deep-space-blue-800 to-deep-space-blue-950 flex items-center justify-center">
+                <span class="font-display text-parchment-50/20 text-6xl font-light select-none">
+                  {isIT ? d.nameIT[0] : d.nameEN[0]}
+                </span>
+              </div>
+            )}
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-deep-space-blue-950/80"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <p class="text-parchment-200 text-xs font-medium tracking-[0.2em] uppercase mb-1">{isIT ? d.subIT : d.subEN}</p>
+              <h3 class="font-display text-parchment-50 font-medium text-2xl tracking-tight">{isIT ? d.nameIT : d.nameEN}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Clip-path reveal for destination cards
+  const cards = document.querySelectorAll('.dest-card');
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (!mediaQuery.matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const idx = parseInt(el.getAttribute('data-index') ?? '0');
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.clipPath = 'inset(0 0 0% 0)';
+            }, idx * 100);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cards.forEach((card) => {
+      const el = card as HTMLElement;
+      el.style.opacity = '0';
+      el.style.clipPath = 'inset(0 0 100% 0)';
+      el.style.transition = 'opacity 0.6s ease, clip-path 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(el);
+    });
+  }
+</script>

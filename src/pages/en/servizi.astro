@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ServiziSection from '../../components/ServiziSection.astro';
+import CTAForm from '../../components/CTAForm.astro';
+import WhatsAppSticky from '../../components/WhatsAppSticky.astro';
+---
+
+<Layout url="/en/servizi" lang="en" service={{ name: 'NCC Sicily Services', areaServed: 'Sicily', description: 'Premium NCC services in Sicily: airport transfers, private tours, weddings and business events.' }}>
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Our Services"
+    tagline="Premium vehicles, professional drivers and tailor-made itineraries to explore Sicily in total comfort."
+  />
+
+  <ServiziSection lang="en" />
+
+  <!-- SEO footer links -->
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <p class="text-parchment-200 text-sm mb-3">
+        Private driver pages:{' '}
+        <a href="/driver-catania" class="text-golden-bronze-400 hover:underline">Catania</a>,{' '}
+        <a href="/driver-noto" class="text-golden-bronze-400 hover:underline">Noto</a>,{' '}
+        <a href="/driver-taormina" class="text-golden-bronze-400 hover:underline">Taormina</a>,{' '}
+        <a href="/driver-ragusa" class="text-golden-bronze-400 hover:underline">Ragusa</a>.
+      </p>
+      <p class="text-parchment-200 text-sm">
+        Italian pages:{' '}
+        <a href="/ncc-catania" class="text-golden-bronze-400 hover:underline">NCC Catania</a>,{' '}
+        <a href="/ncc-noto" class="text-golden-bronze-400 hover:underline">NCC Noto</a>,{' '}
+        <a href="/ncc-taormina" class="text-golden-bronze-400 hover:underline">NCC Taormina</a>,{' '}
+        <a href="/ncc-ragusa" class="text-golden-bronze-400 hover:underline">NCC Ragusa</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</Layout>

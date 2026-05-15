@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ServiziSection from '../../components/ServiziSection.astro';
+import DestinazioniSection from '../../components/DestinazioniSection.astro';
+import ChiSiamoSection from '../../components/ChiSiamoSection.astro';
+import ComeFunziona from '../../components/ComeFunziona.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTAForm from '../../components/CTAForm.astro';
+import WhatsAppSticky from '../../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'How much does an airport transfer from Catania cost?',
+    a: 'Prices start at €80 per trip for NCC service with Mercedes Class V, varying based on route and number of passengers.',
+  },
+  {
+    q: 'Can I book a Baroque tour in one day?',
+    a: 'Yes: we offer 4–8 hour tours with optional guide; itinerary is customizable and includes Noto, Modica, Ragusa Ibla.',
+  },
+  {
+    q: 'Do you offer late-night private taxi service?',
+    a: 'Certainly: our NCC operates 24/7, perfect for evening transfers to restaurants, events, or airports.',
+  },
+];
+---
+
+<Layout url="/en/" faqs={faqs} lang="en">
+  <Hero
+    lang="en"
+    h1="Sicily Driver Syracuse"
+    tagline="NCC luxury in Sicily"
+    ctaPrimary={{ label: 'Get a free quote', href: '/en/contatti' }}
+    ctaSecondary={{ label: 'Explore tours', href: '/en/tour-sicilia' }}
+  />
+
+  <div class="bg-deep-space-blue-800 py-6 px-5 md:px-10">
+    <p class="max-w-[1360px] mx-auto text-parchment-100 text-center text-sm md:text-base font-body font-medium tracking-wide">
+      VIP-style elegance at market prices: your luxury NCC at affordable rates.
+    </p>
+  </div>
+
+  <ServiziSection lang="en" />
+  <DestinazioniSection lang="en" />
+  <ChiSiamoSection lang="en" />
+  <ComeFunziona lang="en" />
+  <FAQ lang="en" faqs={faqs} dark={false} />
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</Layout>

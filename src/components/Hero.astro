@@ -1,0 +1,119 @@
+---
+import HeroFadeOut from './react/HeroFadeOut';
+
+interface Props {
+  lang?: 'it' | 'en';
+  h1?: string;
+  tagline?: string;
+  ctaPrimary?: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+  compact?: boolean;
+}
+
+const {
+  lang = 'it',
+  h1 = 'Sicily Driver Siracusa',
+  tagline,
+  ctaPrimary,
+  ctaSecondary,
+  compact = false,
+} = Astro.props;
+---
+
+<section
+  id="hero-section"
+  class:list={[
+    'relative overflow-hidden bg-deep-space-blue-950',
+    compact ? 'min-h-[50vh]' : 'min-h-screen',
+  ]}
+>
+  <!-- Background image with Ken Burns -->
+  <picture class="absolute inset-0 w-full h-full">
+    <source
+      media="(min-width: 768px)"
+      srcset="/images/hero-desktop.webp"
+      type="image/webp"
+    />
+    <source
+      srcset="/images/hero-mobile.webp"
+      type="image/webp"
+    />
+    <img
+      src="/images/hero-desktop.webp"
+      alt={lang === 'it' ? 'Mercedes Classe V a Siracusa, Sicilia' : 'Mercedes V-Class in Syracuse, Sicily'}
+      class="ken-burns absolute inset-0 w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
+
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-deep-space-blue-950/40 via-deep-space-blue-950/20 to-deep-space-blue-950/80"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-deep-space-blue-950/60 via-transparent to-transparent"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex flex-col justify-end min-h-screen pb-20 md:pb-28 px-5 md:px-10 max-w-[1360px] mx-auto">
+    {!compact && (
+      <div class="max-w-4xl" style="animation: fadeUp 1.2s ease-out both;">
+        {tagline && (
+          <p class="text-golden-bronze-400 text-xs md:text-sm font-body font-medium tracking-[0.25em] uppercase mb-6 opacity-90">
+            {tagline}
+          </p>
+        )}
+        <h1 class="font-display text-white font-medium leading-[0.95] mb-8 text-[clamp(48px,10vw,128px)] tracking-tight">
+          {h1}
+        </h1>
+        <div class="flex flex-col sm:flex-row gap-4">
+          {ctaPrimary && (
+            <a
+              href={ctaPrimary.href}
+              class="inline-flex items-center justify-center px-8 py-4 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium text-base rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              {ctaPrimary.label}
+            </a>
+          )}
+          {ctaSecondary && (
+            <a
+              href={ctaSecondary.href}
+              class="inline-flex items-center justify-center px-8 py-4 border border-parchment-200/60 text-parchment-50 hover:bg-parchment-50/10 font-medium text-base rounded-sm transition-all duration-300"
+            >
+              {ctaSecondary.label}
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+    {compact && (
+      <div class="max-w-3xl" style="animation: fadeUp 0.8s ease-out both;">
+        <h1 class="font-display text-white font-medium leading-[1.0] text-[clamp(36px,6vw,80px)] tracking-tight mb-4">
+          {h1}
+        </h1>
+        {tagline && (
+          <p class="text-parchment-100 text-lg font-body leading-relaxed max-w-2xl">
+            {tagline}
+          </p>
+        )}
+      </div>
+    )}
+  </div>
+
+  <!-- Scroll indicator (hidden on compact) -->
+  {!compact && (
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+      <div class="w-px h-12 bg-gradient-to-b from-parchment-50 to-transparent animate-pulse"></div>
+    </div>
+  )}
+</section>
+
+<HeroFadeOut client:load />
+
+<style>
+  .ken-burns {
+    animation: kenBurns 20s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ken-burns { animation: none; }
+  }
+</style>

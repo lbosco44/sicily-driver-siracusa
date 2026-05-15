@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiziSection from '../components/ServiziSection.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+---
+
+<Layout url="/servizi" lang="it" service={{ name: 'Servizi NCC Siracusa', areaServed: 'Sicilia', description: 'Transfer aeroportuali, tour privati, servizio matrimoni ed eventi business con Mercedes premium.' }}>
+  <Hero
+    lang="it"
+    compact={true}
+    h1="I nostri Servizi"
+    tagline="Veicoli premium, autisti professionisti e itinerari su misura per scoprire la Sicilia in totale comfort."
+  />
+
+  <ServiziSection lang="it" />
+
+  <!-- SEO footer links — CRITICAL -->
+  <section class="bg-deep-space-blue-950 py-12">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <p class="text-parchment-200 text-sm mb-3">
+        Servizi NCC disponibili anche a:{' '}
+        <a href="/ncc-catania" class="text-golden-bronze-400 hover:underline">Catania</a>,{' '}
+        <a href="/ncc-noto" class="text-golden-bronze-400 hover:underline">Noto</a>,{' '}
+        <a href="/ncc-taormina" class="text-golden-bronze-400 hover:underline">Taormina</a>,{' '}
+        <a href="/ncc-ragusa" class="text-golden-bronze-400 hover:underline">Ragusa</a>.
+      </p>
+      <p class="text-parchment-200 text-sm">
+        Looking for a <strong class="text-parchment-100">private driver in Sicily</strong>? We also provide service in:{' '}
+        <a href="/driver-catania" class="text-golden-bronze-400 hover:underline">Catania</a>,{' '}
+        <a href="/driver-noto" class="text-golden-bronze-400 hover:underline">Noto</a>,{' '}
+        <a href="/driver-taormina" class="text-golden-bronze-400 hover:underline">Taormina</a>,{' '}
+        <a href="/driver-ragusa" class="text-golden-bronze-400 hover:underline">Ragusa</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</Layout>

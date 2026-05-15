@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAForm from '../components/CTAForm.astro';
+import WhatsAppSticky from '../components/WhatsAppSticky.astro';
+
+const faqs = [
+  {
+    q: 'Possiamo personalizzare le soste?',
+    a: 'Sì, ogni tour è modulabile: foto-spot, tempo libero, degustazioni e visite guidate su richiesta.',
+  },
+  {
+    q: 'Quanto dura un tour tipico?',
+    a: 'Da 6 a 9 ore in base al percorso. Per itinerari più lunghi possiamo estendere a giornata intera.',
+  },
+  {
+    q: 'Sono disponibili seggiolini per bambini?',
+    a: 'Certo, basta richiederli in fase di prenotazione. Inclusi senza costi extra.',
+  },
+];
+---
+
+<Layout url="/tour-barocco" faqs={faqs} lang="it" service={{ name: 'Tour Barocco Siciliano', areaServed: 'Val di Noto', description: 'Tour del Barocco siciliano in giornata con autista privato: Noto, Modica, Ragusa Ibla.' }}>
+  <Hero
+    lang="it"
+    compact={true}
+    h1="Tour del Barocco: Noto, Modica & Ragusa in un Giorno"
+    tagline="Il tour più richiesto della Sicilia orientale"
+  />
+
+  <section class="bg-parchment-50 py-24 md:py-40">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="space-y-6 text-ink-black-700 text-lg leading-relaxed mb-12">
+          <p>
+            Vivi l'emozione del <strong>Tour del Barocco</strong> in Sicilia: un'esperienza indimenticabile tra le città di <strong>Noto</strong>, <strong>Modica</strong> e <strong>Ragusa</strong>. Scopri la maestosità delle facciate barocche, i palazzi storici e le chiese simbolo di una cultura artistica senza eguali.
+          </p>
+          <p>
+            Partendo da Siracusa, ti accompagniamo attraverso le meraviglie di <strong>Noto</strong> con la sua Cattedrale di San Nicolò, proseguendo verso la suggestiva <strong>Modica</strong>, patria del pregiato cioccolato artigianale e della chiesa di San Pietro, fino alla celebre <strong>Ragusa Ibla</strong> con la magnifica Cattedrale di San Giorgio. Ogni tappa è studiata per offrirti comfort, storia e gusto autentico.
+          </p>
+          <p>Questo tour privato NCC garantisce:</p>
+          <ul class="space-y-3 pl-2">
+            {[
+              'Puntualità e professionalità dei nostri autisti NCC',
+              'Parco auto di lusso (Mercedes Classe V, GLB Premium, Classe E)',
+              'Itinerario personalizzabile e supporto 24/7',
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p>
+            Prenota ora il tuo <strong>Tour del Barocco</strong> e immergiti nella bellezza senza tempo del barocco siciliano ad un prezzo mai visto.
+          </p>
+        </div>
+        <a href="/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+          Chiedi informazioni
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} lang="it" dark={false} />
+  <CTAForm lang="it" />
+  <WhatsAppSticky lang="it" />
+</Layout>

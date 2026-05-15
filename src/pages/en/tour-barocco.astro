@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import CTAForm from '../../components/CTAForm.astro';
+import WhatsAppSticky from '../../components/WhatsAppSticky.astro';
+---
+
+<Layout
+  url="/en/tour-barocco"
+  lang="en"
+  service={{ name: 'Baroque Tour Sicily', areaServed: 'Val di Noto', description: 'Sicilian Baroque Tour in one day with private driver: Noto, Modica, Ragusa Ibla.' }}
+>
+  <Hero
+    lang="en"
+    compact={true}
+    h1="Baroque Tour: Noto, Modica & Ragusa in One Day"
+    tagline="The most requested tour in eastern Sicily"
+  />
+
+  <section class="bg-parchment-50 py-24 md:py-40">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <div class="max-w-3xl">
+        <div class="space-y-6 text-ink-black-700 text-lg leading-relaxed mb-12">
+          <p>
+            Experience the magic of our <strong>Baroque Tour</strong> in Sicily: an unforgettable journey through the Baroque masterpieces of <strong>Noto</strong>, <strong>Modica</strong>, and <strong>Ragusa</strong>. Admire the intricate church façades, opulent palaces, and historic squares that showcase the island's rich artistic heritage.
+          </p>
+          <p>
+            Starting from Syracuse, we guide you to the majestic <strong>Cathedral of San Nicolò</strong> in Noto, then to the charming <strong>Church of San Pietro</strong> in Modica, famous for its artisanal chocolate, and finally to the enchanting <strong>Cathedral of San Giorgio</strong> in Ragusa Ibla. Each stop is designed to combine culture, comfort, and authentic Sicilian flavors.
+          </p>
+          <p>This private NCC tour ensures:</p>
+          <ul class="space-y-3 pl-2">
+            {[
+              'Punctuality and professionalism of our NCC drivers',
+              'Luxury fleet (Mercedes Class V, GLB Premium, Class E)',
+              'Customizable itinerary and 24/7 support',
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p>
+            Book your <strong>Baroque Tour</strong> now and immerse yourself in the timeless beauty of Sicilian Baroque at an unbeatable price.
+          </p>
+        </div>
+        <a href="/en/contatti" class="inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium px-8 py-4 rounded-sm transition-colors duration-200">
+          Request Information
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTAForm lang="en" />
+  <WhatsAppSticky lang="en" />
+</Layout>
