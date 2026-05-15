@@ -9,16 +9,22 @@ const steps = isIT
   ? [
       {
         num: '01',
+        img: '/images/step-01-richiesta.webp',
+        alt: 'Richiesta preventivo NCC Siracusa',
         title: 'Ci dici data, persone e preferenze',
         body: 'Scrivi via form, WhatsApp o email. Rispondiamo entro poche ore con una proposta su misura.',
       },
       {
         num: '02',
+        img: '/images/step-02-itinerario.webp',
+        alt: 'Itinerario personalizzato Sicilia',
         title: 'Proponiamo un itinerario personalizzato',
         body: 'Costruiamo il percorso con tempistiche, soste e consigli locali. Ogni dettaglio è concordato con te.',
       },
       {
         num: '03',
+        img: '/images/step-03-autista.webp',
+        alt: 'Autista NCC Mercedes Siracusa',
         title: 'Autista dedicato, Mercedes, nessun pensiero',
         body: 'Il giorno concordato il tuo autista è puntuale. Goditi la Sicilia in totale comfort, 24/7.',
       },
@@ -26,16 +32,22 @@ const steps = isIT
   : [
       {
         num: '01',
+        img: '/images/step-01-richiesta.webp',
+        alt: 'NCC Siracusa quote request',
         title: 'Tell us your date, party size and preferences',
         body: 'Write via form, WhatsApp or email. We reply within a few hours with a tailored proposal.',
       },
       {
         num: '02',
+        img: '/images/step-02-itinerario.webp',
+        alt: 'Custom Sicily itinerary',
         title: 'We design a custom itinerary',
         body: 'We build your route with timing, stops and local tips. Every detail is agreed with you.',
       },
       {
         num: '03',
+        img: '/images/step-03-autista.webp',
+        alt: 'Dedicated NCC driver Mercedes Sicily',
         title: 'Dedicated driver, Mercedes, zero stress',
         body: 'On the agreed day your driver is punctual. Enjoy Sicily in total comfort, 24/7.',
       },
@@ -62,9 +74,15 @@ const steps = isIT
           class="step-card border border-parchment-50/10 rounded-sm p-8 md:p-10 flex flex-col gap-6 hover:border-golden-bronze-500/40 transition-all duration-300"
           data-index={i}
         >
-          <!-- Step placeholder (no image) -->
-          <div class="h-32 rounded-sm bg-deep-space-blue-800/80 flex items-center justify-center mb-2">
-            <span class="font-display text-[72px] font-light text-golden-bronze-500/25 leading-none select-none" aria-hidden="true">
+          <div class="relative h-48 rounded-sm overflow-hidden mb-2">
+            <img
+              src={step.img}
+              alt={step.alt}
+              class="absolute inset-0 w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-deep-space-blue-950/30"></div>
+            <span class="absolute bottom-3 right-4 font-display text-5xl font-light text-parchment-50/30 leading-none select-none" aria-hidden="true">
               {step.num}
             </span>
           </div>
