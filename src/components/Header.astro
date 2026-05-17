@@ -1,4 +1,6 @@
 ---
+import CtaButton from './CtaButton.astro';
+
 interface Props {
   lang?: 'it' | 'en';
   variant?: 'light' | 'dark';
@@ -83,12 +85,13 @@ const currentPath = Astro.url.pathname;
         />
         <span class="lang-slider"></span>
       </label>
-      <a
-        href={isIT ? '/contatti' : '/en/contatti'}
-        class="hidden md:flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-sm transition-all duration-200 cta-btn"
-      >
-        {isIT ? 'Preventivo' : 'Get a Quote'}
-      </a>
+      <span class="hidden md:inline-flex">
+        <CtaButton
+          label={isIT ? 'Preventivo' : 'Get a Quote'}
+          href={isIT ? '/contatti' : '/en/contatti'}
+          size="sm"
+        />
+      </span>
 
       <!-- Mobile hamburger -->
       <button

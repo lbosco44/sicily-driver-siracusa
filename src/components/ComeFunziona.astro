@@ -1,4 +1,6 @@
 ---
+import CtaButton from './CtaButton.astro';
+
 interface Props {
   lang?: 'it' | 'en';
 }
@@ -101,17 +103,12 @@ const steps = isIT
       ))}
     </div>
 
-    <!-- CTA -->
     <div class="mt-16 text-center">
-      <a
+      <CtaButton
+        label={isIT ? 'Richiedi il tuo preventivo' : 'Request your quote'}
         href={isIT ? '/contatti' : '/en/contatti'}
-        class="inline-flex items-center gap-3 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium text-base px-10 py-5 rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-      >
-        {isIT ? 'Richiedi il tuo preventivo' : 'Request your quote'}
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
+        size="lg"
+      />
     </div>
   </div>
 </section>

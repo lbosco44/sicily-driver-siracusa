@@ -119,3 +119,94 @@ html.lenis { height: auto; }
 /* Typography helpers */
 .font-display { font-family: var(--font-display); }
 .font-body { font-family: var(--font-body); }
+
+/* ============================================================
+   CTA Button (Uiverse "fly-away" — adattato a palette del sito)
+   ============================================================ */
+.cta-fly {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  background: var(--color-golden-bronze-500);
+  color: #ffffff;
+  padding: 0.85em 1.4em;
+  padding-left: 1.1em;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+}
+.cta-fly:hover {
+  background: var(--color-golden-bronze-600);
+  box-shadow: 0 12px 28px -10px rgba(196, 153, 59, 0.55);
+}
+.cta-fly:active {
+  transform: scale(0.97);
+}
+
+.cta-fly--lg {
+  font-size: 1rem;
+  padding: 1em 1.75em;
+  padding-left: 1.4em;
+}
+.cta-fly--sm {
+  font-size: 0.875rem;
+  padding: 0.65em 1.1em;
+  padding-left: 0.9em;
+}
+
+.cta-fly--outline {
+  background: transparent;
+  color: var(--color-parchment-50);
+  border-color: rgba(230, 211, 179, 0.6);
+}
+.cta-fly--outline:hover {
+  background: rgba(249, 244, 236, 0.1);
+  border-color: rgba(230, 211, 179, 0.9);
+  box-shadow: none;
+}
+
+.cta-fly-icon {
+  display: inline-flex;
+  transform-origin: center;
+}
+.cta-fly svg {
+  display: block;
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cta-fly-label {
+  display: inline-block;
+  margin-left: 0.5em;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.cta-fly:hover .cta-fly-icon {
+  animation: ctaFlyBounce 0.6s ease-in-out infinite alternate;
+}
+.cta-fly:hover svg {
+  transform: translateX(1.3em) rotate(45deg) scale(1.1);
+}
+.cta-fly:hover .cta-fly-label {
+  transform: translateX(200%);
+  opacity: 0;
+}
+
+@keyframes ctaFlyBounce {
+  from { transform: translateY(0.12em); }
+  to   { transform: translateY(-0.12em); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-fly:hover .cta-fly-icon { animation: none; }
+  .cta-fly:hover svg,
+  .cta-fly:hover .cta-fly-label { transform: none; opacity: 1; }
+}

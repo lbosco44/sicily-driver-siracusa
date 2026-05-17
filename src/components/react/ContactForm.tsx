@@ -108,16 +108,19 @@ export default function ContactForm({ lang = 'it' }: Props) {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="flex-shrink-0 inline-flex items-center gap-2 bg-golden-bronze-500 hover:bg-golden-bronze-600 disabled:opacity-60 text-white font-medium text-base px-8 py-4 rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 disabled:hover:translate-y-0 disabled:cursor-not-allowed"
+          className="cta-fly cta-fly--primary cta-fly--lg disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {status === 'sending'
-            ? isIT ? 'Invio in corso...' : 'Sending...'
-            : isIT ? 'Invia richiesta' : 'Send Request'}
-          {status !== 'sending' && (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+          <span className="cta-fly-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path fill="none" d="M0 0h24v24H0z"/>
+              <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
             </svg>
-          )}
+          </span>
+          <span className="cta-fly-label">
+            {status === 'sending'
+              ? isIT ? 'Invio in corso...' : 'Sending...'
+              : isIT ? 'Invia richiesta' : 'Send Request'}
+          </span>
         </button>
 
         {status === 'success' && (

@@ -1,5 +1,6 @@
 ---
 import HeroFadeOut from './react/HeroFadeOut';
+import CtaButton from './CtaButton.astro';
 
 interface Props {
   lang?: 'it' | 'en';
@@ -66,20 +67,10 @@ const {
         </h1>
         <div class="flex flex-col sm:flex-row gap-4">
           {ctaPrimary && (
-            <a
-              href={ctaPrimary.href}
-              class="inline-flex items-center justify-center px-8 py-4 bg-golden-bronze-500 hover:bg-golden-bronze-600 text-white font-medium text-base rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-            >
-              {ctaPrimary.label}
-            </a>
+            <CtaButton label={ctaPrimary.label} href={ctaPrimary.href} variant="primary" size="lg" />
           )}
           {ctaSecondary && (
-            <a
-              href={ctaSecondary.href}
-              class="inline-flex items-center justify-center px-8 py-4 border border-parchment-200/60 text-parchment-50 hover:bg-parchment-50/10 font-medium text-base rounded-sm transition-all duration-300"
-            >
-              {ctaSecondary.label}
-            </a>
+            <CtaButton label={ctaSecondary.label} href={ctaSecondary.href} variant="outline" size="lg" />
           )}
         </div>
       </div>
