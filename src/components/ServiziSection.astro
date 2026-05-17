@@ -1,4 +1,6 @@
 ---
+import CtaButton from './CtaButton.astro';
+
 interface Props {
   lang?: 'it' | 'en';
 }
@@ -11,17 +13,20 @@ const servizi = isIT
         num: '01',
         img: '/images/servizi-01-transfer.webp',
         alt: 'Transfer aeroportuale con Mercedes',
+        kicker: 'Transfer',
         h2: 'Transfer Aeroportuali & Point-to-Point',
         items: [
           'Servizio da/per aeroporti: Catania, Comiso, Palermo',
           'Transfer da/per porti: Siracusa, Pozzallo',
           'Pick-up e drop-off flessibili h24',
         ],
+        cta: { label: 'Richiedi un transfer', href: '/contatti' },
       },
       {
         num: '02',
         img: '/images/servizi-02-tour.webp',
         alt: 'Tour privato in Sicilia',
+        kicker: 'Tour',
         h2: 'Tour Personalizzati in Sicilia',
         body: 'Itinerari su misura, pick-up e drop-off dove vuoi. Scopri storia, paesaggi e sapori con un autista-guida esperto.',
         cta: { label: 'Scopri i tour', href: '/tour-sicilia' },
@@ -30,12 +35,14 @@ const servizi = isIT
         num: '03',
         img: '/images/servizi-03-eventi.webp',
         alt: 'Noleggio per eventi e business',
+        kicker: 'Eventi',
         h2: 'Noleggio per Eventi & Business',
         items: [
           'Meeting e trasferimenti aziendali',
           'Matrimoni, cerimonie ed eventi speciali',
           'Congressi e fiere con supporto logistico',
         ],
+        cta: { label: 'Parliamo del tuo evento', href: '/contatti' },
       },
     ]
   : [
@@ -43,17 +50,20 @@ const servizi = isIT
         num: '01',
         img: '/images/servizi-01-transfer.webp',
         alt: 'Airport transfer with Mercedes',
+        kicker: 'Transfer',
         h2: 'Airport Transfers & Point-to-Point',
         items: [
           'Catania Airport → Siracusa / Noto / Ragusa / Taormina',
           'Comiso, Palermo, Trapani on request',
           'Mercedes vans & SUVs (V-Class, GLB, E-Class)',
         ],
+        cta: { label: 'Book a transfer', href: '/en/contatti' },
       },
       {
         num: '02',
         img: '/images/servizi-02-tour.webp',
         alt: 'Private tour in Sicily',
+        kicker: 'Tours',
         h2: 'Private Tours in Sicily',
         body: 'Custom itineraries with a dedicated driver: Baroque towns, Etna & wineries, Ortigia and Taormina highlights.',
         cta: { label: 'Explore our tours', href: '/en/tour-sicilia' },
@@ -62,95 +72,191 @@ const servizi = isIT
         num: '03',
         img: '/images/servizi-03-eventi.webp',
         alt: 'Events & Business rental',
+        kicker: 'Events',
         h2: 'Events & Business',
         items: [
           'Corporate travel and meetings',
           'Weddings, ceremonies and VIP events',
           'On-site logistics for congresses and fairs',
         ],
+        cta: { label: 'Talk to us', href: '/en/contatti' },
       },
     ];
 ---
 
-<section class="bg-parchment-50 py-24 md:py-40">
-  <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+<section
+  id="servizi-section"
+  class="servizi-section bg-deep-space-blue-950 relative"
+  aria-label={isIT ? 'I nostri servizi' : 'Our services'}
+>
+  <!-- DESKTOP: pinned scroll-driven scene -->
+  <div class="servizi-pin hidden md:block relative">
+    <div class="servizi-stage relative w-full h-screen overflow-hidden">
 
-    <!-- Section header -->
-    <div class="flex items-baseline gap-6 mb-16 md:mb-24">
-      <span class="font-display text-[80px] md:text-[120px] font-light text-ink-black-950/20 leading-none select-none" aria-hidden="true">01</span>
-      <div>
-        <p class="text-golden-bronze-600 text-xs font-body font-medium tracking-[0.25em] uppercase mb-2">
-          {isIT ? 'Il Servizio' : 'Our Service'}
-        </p>
-        <h2 class="font-display text-ink-black-900 font-medium text-[clamp(28px,4vw,52px)] leading-tight tracking-tight">
-          {isIT ? 'I nostri Servizi' : 'Our Services'}
-        </h2>
-      </div>
-    </div>
-
-    <!-- Service blocks -->
-    <div class="space-y-20 md:space-y-32" id="servizi-blocks">
-      {servizi.map((s, i) => (
-        <div
-          class:list={[
-            'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center servizi-block',
-            i % 2 === 1 ? 'md:[&>*:first-child]:order-2' : '',
-          ]}
-          data-index={i}
-        >
-          <!-- Image -->
-          <div class="relative overflow-hidden rounded-sm aspect-[3/4] md:aspect-auto md:h-[480px]">
+      <!-- Background images stacked (crossfade) -->
+      <div class="absolute inset-0">
+        {servizi.map((s, i) => (
+          <div
+            class="servizi-bg absolute inset-0"
+            data-slide={i}
+            style={`opacity:${i === 0 ? 1 : 0};`}
+          >
             <img
               src={s.img}
               alt={s.alt}
-              class="w-full h-full object-cover object-center"
-              loading="lazy"
+              class="absolute inset-0 w-full h-full object-cover object-center"
+              loading={i === 0 ? 'eager' : 'lazy'}
             />
+            <div class="absolute inset-0 bg-gradient-to-r from-deep-space-blue-950/90 via-deep-space-blue-950/65 to-deep-space-blue-950/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-deep-space-blue-950/80 via-transparent to-deep-space-blue-950/20"></div>
           </div>
+        ))}
+      </div>
 
-          <!-- Text -->
-          <div class="flex flex-col justify-center">
-            <span class="font-display text-[56px] font-light text-golden-bronze-400/30 leading-none mb-4 select-none" aria-hidden="true">
+      <!-- Section label top-left -->
+      <div class="absolute top-24 left-10 z-10">
+        <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.3em] uppercase">
+          02 — {isIT ? 'Il Servizio' : 'Our Service'}
+        </p>
+      </div>
+
+      <!-- BIG ghost number per slide -->
+      <div class="absolute inset-0 flex items-center pointer-events-none" aria-hidden="true">
+        <div class="relative w-full max-w-[1360px] mx-auto px-10">
+          {servizi.map((s, i) => (
+            <span
+              class="servizi-bignum absolute font-display font-light leading-none text-parchment-50/[0.07] select-none"
+              data-slide={i}
+              style={`opacity:${i === 0 ? 1 : 0}; font-size: clamp(280px, 38vw, 560px); right: 4vw; top: 50%; transform: translateY(-50%);`}
+            >
               {s.num}
             </span>
-            <h3 class="font-display text-ink-black-900 font-medium text-[clamp(22px,3vw,36px)] leading-tight tracking-tight mb-5">
-              {s.h2}
-            </h3>
+          ))}
+        </div>
+      </div>
+
+      <!-- Slide content -->
+      <div class="absolute inset-0 flex items-center">
+        <div class="relative w-full max-w-[1360px] mx-auto px-10 z-10">
+          <div class="max-w-2xl">
+            {servizi.map((s, i) => (
+              <div
+                class="servizi-slide"
+                data-slide={i}
+                style={`opacity:${i === 0 ? 1 : 0}; transform: translateY(${i === 0 ? '0' : '32px'}); position:${i === 0 ? 'relative' : 'absolute'}; inset:${i === 0 ? 'auto' : '0'};`}
+              >
+                <p class="text-golden-bronze-400 text-sm font-body font-medium tracking-[0.25em] uppercase mb-5">
+                  {s.kicker}
+                </p>
+                <h3 class="font-display text-parchment-50 font-medium text-[clamp(40px,5.5vw,72px)] leading-[1.02] tracking-tight mb-6">
+                  {s.h2}
+                </h3>
+                {'body' in s && s.body && (
+                  <p class="text-parchment-100/85 text-lg leading-relaxed mb-8 max-w-xl">{s.body}</p>
+                )}
+                {'items' in s && s.items && (
+                  <ul class="space-y-3 mb-8">
+                    {s.items.map((item) => (
+                      <li class="flex items-start gap-3 text-parchment-100/85">
+                        <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
+                        <span class="text-base md:text-lg leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {s.cta && (
+                  <CtaButton label={s.cta.label} href={s.cta.href} size="md" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress indicator (bottom) -->
+      <div class="absolute bottom-12 left-10 right-10 z-20">
+        <div class="flex items-center gap-6 max-w-[1360px] mx-auto">
+          <div class="flex items-center gap-3" aria-hidden="true">
+            {servizi.map((s, i) => (
+              <span
+                class="servizi-dot block h-px transition-all duration-500"
+                data-slide={i}
+                style={`width:${i === 0 ? '64px' : '24px'}; background-color:${i === 0 ? '#c4993b' : 'rgba(249,244,236,0.25)'};`}
+              ></span>
+            ))}
+          </div>
+          <p class="text-parchment-200/70 text-xs font-body tracking-[0.2em] uppercase">
+            <span class="servizi-counter">01</span> / 03
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MOBILE: stacked simple cards -->
+  <div class="md:hidden">
+    <div class="max-w-[1360px] mx-auto px-5 py-20">
+      <div class="mb-12">
+        <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.3em] uppercase mb-3">
+          02 — {isIT ? 'Il Servizio' : 'Our Service'}
+        </p>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(32px,8vw,52px)] leading-tight tracking-tight">
+          {isIT ? 'I nostri Servizi' : 'Our Services'}
+        </h2>
+      </div>
+
+      <div class="space-y-14">
+        {servizi.map((s) => (
+          <div class="servizi-mobile-card group">
+            <div class="relative aspect-[4/5] rounded-sm overflow-hidden mb-5">
+              <img
+                src={s.img}
+                alt={s.alt}
+                class="absolute inset-0 w-full h-full object-cover object-center"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-deep-space-blue-950/80 via-transparent to-transparent"></div>
+              <span class="absolute top-4 left-5 font-display text-parchment-50/40 text-7xl font-light leading-none select-none" aria-hidden="true">
+                {s.num}
+              </span>
+              <div class="absolute bottom-5 left-5 right-5">
+                <p class="text-golden-bronze-400 text-xs tracking-[0.25em] uppercase mb-2">{s.kicker}</p>
+                <h3 class="font-display text-parchment-50 font-medium text-2xl leading-tight tracking-tight">
+                  {s.h2}
+                </h3>
+              </div>
+            </div>
+
             {'body' in s && s.body && (
-              <p class="text-ink-black-700 text-lg leading-relaxed mb-6">{s.body}</p>
+              <p class="text-parchment-100/80 text-base leading-relaxed mb-4">{s.body}</p>
             )}
             {'items' in s && s.items && (
-              <ul class="space-y-3 mb-6">
+              <ul class="space-y-2 mb-5">
                 {s.items.map((item) => (
-                  <li class="flex items-start gap-3 text-ink-black-700">
-                    <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
-                    <span class="text-base leading-relaxed">{item}</span>
+                  <li class="flex items-start gap-3 text-parchment-100/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2 flex-shrink-0"></span>
+                    <span class="text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
             )}
-            {'cta' in s && s.cta && (
-              <a
-                href={s.cta.href}
-                class="inline-flex items-center gap-2 text-golden-bronze-600 font-medium text-base hover:gap-4 transition-all duration-300 group"
-              >
-                {s.cta.label}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
+            {s.cta && (
+              <CtaButton label={s.cta.label} href={s.cta.href} size="sm" />
             )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
+  </div>
 
-    <!-- Why choose us -->
-    <div class="mt-24 md:mt-40 pt-16 border-t border-ink-black-200/40">
-      <h3 class="font-display text-ink-black-900 font-medium text-[clamp(24px,3vw,40px)] tracking-tight mb-10">
+  <!-- Why choose us -->
+  <div class="bg-deep-space-blue-900 py-20 md:py-28 border-t border-parchment-50/[0.06]">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+      <h3 class="font-display text-parchment-50 font-medium text-[clamp(24px,3vw,40px)] tracking-tight mb-10">
         {isIT ? 'Perché Sceglierci?' : 'Why choose us?'}
       </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
         {(isIT ? [
           'Autisti certificati e multilingue',
           'Veicoli sempre sanificati e controllati',
@@ -162,13 +268,13 @@ const servizi = isIT
           '24/7 assistance and fast confirmations',
           'Exclusive, tailor-made itineraries',
         ]).map((item) => (
-          <div class="flex items-start gap-4 p-6 bg-parchment-100 rounded-sm">
-            <div class="w-8 h-8 rounded-full bg-golden-bronze-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4993b" stroke-width="2.5" aria-hidden="true">
+          <div class="flex items-start gap-4 p-6 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] rounded-sm">
+            <div class="w-8 h-8 rounded-full bg-golden-bronze-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="2.5" aria-hidden="true">
                 <path d="M20 6L9 17l-5-5"/>
               </svg>
             </div>
-            <p class="text-ink-black-800 text-sm leading-relaxed font-medium">{item}</p>
+            <p class="text-parchment-100/90 text-sm leading-relaxed font-medium">{item}</p>
           </div>
         ))}
       </div>
@@ -176,28 +282,81 @@ const servizi = isIT
   </div>
 </section>
 
-<script>
-  // Intersection Observer reveal for servizi blocks
-  const blocks = document.querySelectorAll('.servizi-block');
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+<style>
+  .servizi-bg img {
+    transform: scale(1.04);
+    transition: transform 6s ease-out;
+  }
+  .servizi-bg[data-active="true"] img {
+    transform: scale(1);
+  }
+  .servizi-slide,
+  .servizi-bg,
+  .servizi-bignum {
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
 
-  blocks.forEach((block, i) => {
-    const el = block as HTMLElement;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(40px)';
-    el.style.transition = `opacity 0.7s ease ${i * 0.15}s, transform 0.7s ease ${i * 0.15}s`;
-    observer.observe(el);
-  });
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector<HTMLElement>('.servizi-pin');
+  const stage = document.querySelector<HTMLElement>('.servizi-stage');
+  if (section && stage && window.matchMedia('(min-width: 768px)').matches) {
+    const slides = stage.querySelectorAll<HTMLElement>('.servizi-slide');
+    const bgs = stage.querySelectorAll<HTMLElement>('.servizi-bg');
+    const bignums = stage.querySelectorAll<HTMLElement>('.servizi-bignum');
+    const dots = stage.querySelectorAll<HTMLElement>('.servizi-dot');
+    const counter = stage.querySelector<HTMLElement>('.servizi-counter');
+
+    const slideCount = slides.length;
+
+    // Set initial bg active
+    bgs[0]?.setAttribute('data-active', 'true');
+
+    function activate(idx: number) {
+      slides.forEach((s, i) => {
+        const active = i === idx;
+        s.style.opacity = active ? '1' : '0';
+        s.style.transform = active ? 'translateY(0)' : 'translateY(32px)';
+        s.style.pointerEvents = active ? 'auto' : 'none';
+      });
+      bgs.forEach((b, i) => {
+        b.style.opacity = i === idx ? '1' : '0';
+        if (i === idx) b.setAttribute('data-active', 'true');
+        else b.removeAttribute('data-active');
+      });
+      bignums.forEach((n, i) => {
+        const active = i === idx;
+        n.style.opacity = active ? '1' : '0';
+        n.style.transform = `translateY(-50%) translateX(${active ? '0' : '40px'})`;
+      });
+      dots.forEach((d, i) => {
+        d.style.width = i === idx ? '64px' : '24px';
+        d.style.backgroundColor = i === idx ? '#c4993b' : 'rgba(249,244,236,0.25)';
+      });
+      if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
+    }
+
+    let currentIdx = 0;
+    ScrollTrigger.create({
+      trigger: section,
+      pin: stage,
+      start: 'top top',
+      end: `+=${(slideCount) * 100}%`,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        const idx = Math.min(
+          slideCount - 1,
+          Math.floor(self.progress * slideCount * 0.9999)
+        );
+        if (idx !== currentIdx) {
+          currentIdx = idx;
+          activate(idx);
+        }
+      },
+    });
+  }
 </script>
