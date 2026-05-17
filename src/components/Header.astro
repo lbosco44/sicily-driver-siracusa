@@ -70,12 +70,19 @@ const currentPath = Astro.url.pathname;
 
     <!-- Right side: lang switch + CTA -->
     <div class="flex items-center gap-4">
-      <a
-        href={langSwitch.href}
-        class="hidden md:flex text-xs font-body font-500 tracking-widest uppercase nav-link transition-colors duration-200"
+      <label
+        class="lang-toggle hidden md:inline-block"
+        aria-label={isIT ? 'Switch to English' : 'Passa all\'italiano'}
+        title={isIT ? 'Switch to English' : 'Passa all\'italiano'}
       >
-        {langSwitch.label}
-      </a>
+        <input
+          type="checkbox"
+          class="lang-checkbox sr-only"
+          checked={!isIT}
+          data-target-href={langSwitch.href}
+        />
+        <span class="lang-slider"></span>
+      </label>
       <a
         href={isIT ? '/contatti' : '/en/contatti'}
         class="hidden md:flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-sm transition-all duration-200 cta-btn"
@@ -112,9 +119,18 @@ const currentPath = Astro.url.pathname;
         </a>
       ))}
       <div class="flex items-center gap-4 pt-2">
-        <a href={langSwitch.href} class="text-parchment-200 text-sm font-body tracking-widest uppercase">
-          {langSwitch.label}
-        </a>
+        <label
+          class="lang-toggle"
+          aria-label={isIT ? 'Switch to English' : 'Passa all\'italiano'}
+        >
+          <input
+            type="checkbox"
+            class="lang-checkbox sr-only"
+            checked={!isIT}
+            data-target-href={langSwitch.href}
+          />
+          <span class="lang-slider"></span>
+        </label>
         <a
           href={isIT ? 'https://wa.me/393756413379' : 'https://wa.me/393756413379'}
           target="_blank"
@@ -172,6 +188,58 @@ const currentPath = Astro.url.pathname;
     border-bottom: 1px solid rgba(11, 25, 40, 0.1);
   }
 
+  /* Language toggle (Uiverse-style) — flag-circle slides between IT/EN */
+  .lang-toggle {
+    position: relative;
+    width: 64px;
+    height: 32px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .lang-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 25, 40, 0.55);
+    border: 1px solid rgba(208, 173, 98, 0.45);
+    border-radius: 999px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .lang-slider::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-image: url('/images/flag-it.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-image 0.2s;
+  }
+  .lang-checkbox:checked + .lang-slider::before {
+    transform: translateX(32px);
+    background-image: url('/images/flag-en.png');
+  }
+  .lang-toggle:hover .lang-slider {
+    border-color: rgba(208, 173, 98, 0.75);
+  }
+  #site-header[data-variant="light"] .lang-slider {
+    background: rgba(11, 25, 40, 0.85);
+  }
+
   /* Logo background removal via blend mode.
      Source JPEG is black text on white background.
      On dark header: invert image (white text on black bg) + screen blend → text appears white, black bg vanishes.
@@ -217,6 +285,14 @@ const currentPath = Astro.url.pathname;
     link.addEventListener('click', () => {
       mobileMenu.classList.add('hidden');
       mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Language toggle: navigate to opposite-language URL on change
+  document.querySelectorAll<HTMLInputElement>('.lang-checkbox').forEach((cb) => {
+    cb.addEventListener('change', () => {
+      const target = cb.dataset.targetHref;
+      if (target) window.location.href = target;
     });
   });
 </script>
