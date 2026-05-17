@@ -80,7 +80,7 @@ const currentPath = Astro.url.pathname;
         <input
           type="checkbox"
           class="lang-checkbox sr-only"
-          checked={!isIT}
+          checked={isIT}
           data-target-href={langSwitch.href}
         />
         <span class="lang-slider"></span>
@@ -129,7 +129,7 @@ const currentPath = Astro.url.pathname;
           <input
             type="checkbox"
             class="lang-checkbox sr-only"
-            checked={!isIT}
+            checked={isIT}
             data-target-href={langSwitch.href}
           />
           <span class="lang-slider"></span>
@@ -229,11 +229,19 @@ const currentPath = Astro.url.pathname;
     background-size: cover;
     background-position: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-image 0.2s;
+    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
   }
   .lang-checkbox:checked + .lang-slider::before {
     transform: translateX(32px);
     background-image: url('/images/flag-en.png');
+  }
+
+  /* Page fade during language switch */
+  body.lang-switching {
+    transition: opacity 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
   }
   .lang-toggle:hover .lang-slider {
     border-color: rgba(208, 173, 98, 0.75);
@@ -285,11 +293,26 @@ const currentPath = Astro.url.pathname;
     });
   });
 
-  // Language toggle: navigate to opposite-language URL on change
+  // Language toggle: animate, fade page out, then navigate
+  let langSwitching = false;
   document.querySelectorAll<HTMLInputElement>('.lang-checkbox').forEach((cb) => {
-    cb.addEventListener('change', () => {
+    cb.addEventListener('change', (e) => {
+      if (langSwitching) {
+        e.preventDefault();
+        return;
+      }
       const target = cb.dataset.targetHref;
-      if (target) window.location.href = target;
+      if (!target) return;
+      langSwitching = true;
+      // Mirror the change across all toggles (desktop + mobile)
+      document.querySelectorAll<HTMLInputElement>('.lang-checkbox').forEach((c) => {
+        if (c !== cb) c.checked = cb.checked;
+      });
+      // Let the slider animation complete (~280ms), then fade out and navigate
+      setTimeout(() => {
+        document.body.classList.add('lang-switching');
+        setTimeout(() => { window.location.href = target; }, 220);
+      }, 280);
     });
   });
 </script>
