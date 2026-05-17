@@ -1,14 +1,21 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 
+declare global {
+  interface Window {
+    lenis?: Lenis;
+  }
+}
+
 export default function LenisProvider() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // syncTouch: false keeps native iOS scroll
       syncTouch: false,
     });
+
+    window.lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -18,6 +25,7 @@ export default function LenisProvider() {
 
     return () => {
       lenis.destroy();
+      delete window.lenis;
     };
   }, []);
 
