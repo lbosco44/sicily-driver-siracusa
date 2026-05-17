@@ -74,7 +74,7 @@ const {
         )}
         <div class="flex flex-col sm:flex-row gap-4">
           {ctaPrimary && (
-            <CtaButton label={ctaPrimary.label} href={ctaPrimary.href} variant="primary" size="lg" />
+            <CtaButton label={ctaPrimary.label} href={ctaPrimary.href} variant="solid" size="lg" />
           )}
           {ctaSecondary && (
             <CtaButton label={ctaSecondary.label} href={ctaSecondary.href} variant="outline" size="lg" />
@@ -96,59 +96,53 @@ const {
     )}
   </div>
 
-  <!-- Scroll indicator (hidden on compact) -->
-  {!compact && (
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
-      <div class="w-px h-12 bg-gradient-to-b from-parchment-50 to-transparent animate-pulse"></div>
-    </div>
-  )}
 </section>
 
 <HeroFadeOut client:load />
 
+<script>
+  // Pausa Ken Burns quando l'hero esce dal viewport (perf)
+  const heroImg = document.querySelector<HTMLElement>('#hero-section .ken-burns');
+  if (heroImg) {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) heroImg.classList.remove('paused');
+          else heroImg.classList.add('paused');
+        });
+      },
+      { threshold: 0.05 }
+    );
+    obs.observe(heroImg);
+  }
+</script>
+
 <style>
   .ken-burns {
-    animation: kenBurns 20s ease-in-out infinite alternate;
+    animation: kenBurns 12s ease-in-out infinite alternate;
     will-change: transform;
   }
+  .ken-burns.paused {
+    animation-play-state: paused;
+  }
 
-  /* Motto with gold shimmer sweep */
+  /* Motto: solid champagne-pale color, one-time fade-up at mount */
   .hero-motto {
-    color: rgba(249, 244, 236, 0.92);
+    color: #d4c08a;
     letter-spacing: 0.005em;
     animation: mottoFade 1.6s ease-out 0.25s both;
   }
   .hero-motto-text {
-    background: linear-gradient(
-      100deg,
-      rgba(249, 244, 236, 0.85) 0%,
-      rgba(249, 244, 236, 0.85) 35%,
-      #e6c374 50%,
-      rgba(249, 244, 236, 0.85) 65%,
-      rgba(249, 244, 236, 0.85) 100%
-    );
-    background-size: 220% 100%;
-    background-position: 100% 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: mottoShimmer 5.5s ease-in-out 1.5s infinite;
+    color: inherit;
   }
 
   @keyframes mottoFade {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  @keyframes mottoShimmer {
-    0%   { background-position: 200% 0; }
-    50%  { background-position: -100% 0; }
-    100% { background-position: -100% 0; }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .ken-burns { animation: none; }
-    .hero-motto-text { animation: none; -webkit-text-fill-color: rgba(249, 244, 236, 0.92); color: rgba(249, 244, 236, 0.92); }
     .hero-motto { animation: none; }
   }
 </style>

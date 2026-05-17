@@ -3,7 +3,7 @@ interface Props {
   label: string;
   href?: string;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'outline';
+  variant?: 'primary' | 'outline' | 'solid';
   size?: 'sm' | 'md' | 'lg';
   showIcon?: boolean;
   class?: string;
@@ -21,7 +21,8 @@ const {
   ariaLabel,
 } = Astro.props;
 
-const renderIcon = showIcon ?? variant !== 'outline';
+// Solid variant: no paper-plane, no fly-away animation. Outline: no icon either.
+const renderIcon = showIcon ?? (variant === 'primary');
 
 const classes = [
   'cta-fly',

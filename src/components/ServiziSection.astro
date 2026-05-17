@@ -189,7 +189,7 @@ const bento = isIT
                   </ul>
                 )}
                 {s.cta && (
-                  <CtaButton label={s.cta.label} href={s.cta.href} size="md" />
+                  <CtaButton label={s.cta.label} href={s.cta.href} variant="solid" size="md" />
                 )}
               </div>
             </div>
@@ -262,7 +262,7 @@ const bento = isIT
                 ))}
               </ul>
             )}
-            {s.cta && <CtaButton label={s.cta.label} href={s.cta.href} size="sm" />}
+            {s.cta && <CtaButton label={s.cta.label} href={s.cta.href} variant="solid" size="sm" />}
           </div>
         ))}
       </div>
@@ -282,9 +282,9 @@ const bento = isIT
         <p class="text-parchment-100/70 text-base md:text-lg leading-relaxed">{bento.sub}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-[auto_auto_auto] gap-4 md:gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-[auto_auto] gap-4 md:gap-5">
 
-        <!-- BIG card: fleet, spans 2 col x 2 row -->
+        <!-- BIG card: fleet, spans 2 col x 2 row (riformulato: include stats inline come pill — Impeccable V3) -->
         <div class="md:col-span-2 md:row-span-2 relative rounded-md overflow-hidden group bg-deep-space-blue-950 border border-parchment-50/[0.08] min-h-[320px] md:min-h-[440px]">
           <img
             src={bento.big.img}
@@ -300,39 +300,23 @@ const bento = isIT
             <h4 class="font-display text-parchment-50 font-medium text-[clamp(24px,2.6vw,38px)] leading-[1.1] tracking-tight mb-4 max-w-md">
               {bento.big.title}
             </h4>
-            <p class="text-parchment-100/85 text-base leading-relaxed max-w-md">{bento.big.body}</p>
-          </div>
-        </div>
-
-        <!-- Stat 1 -->
-        <div class="relative rounded-md p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col justify-between min-h-[160px] hover:border-golden-bronze-500/30 transition-colors duration-300">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 7v5l3 2"/>
-          </svg>
-          <div>
-            <p class="font-display font-light text-parchment-50 text-[44px] md:text-[56px] leading-none mb-1 tracking-tight">
-              {bento.stats[0].value}
-            </p>
-            <p class="text-parchment-200/70 text-xs tracking-wide">{bento.stats[0].label}</p>
-          </div>
-        </div>
-
-        <!-- Stat 2 -->
-        <div class="relative rounded-md p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col justify-between min-h-[160px] hover:border-golden-bronze-500/30 transition-colors duration-300">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
-            <path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11z" stroke-linejoin="round"/>
-          </svg>
-          <div>
-            <p class="font-display font-light text-parchment-50 text-[44px] md:text-[56px] leading-none mb-1 tracking-tight">
-              {bento.stats[1].value}
-            </p>
-            <p class="text-parchment-200/70 text-xs tracking-wide">{bento.stats[1].label}</p>
+            <p class="text-parchment-100/85 text-base leading-relaxed mb-6 max-w-md">{bento.big.body}</p>
+            <!-- Stats inline pills (no hero-metric template) -->
+            <div class="flex flex-wrap gap-2.5">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-parchment-50/8 border border-parchment-50/15 text-parchment-100 text-xs font-body">
+                <span class="text-golden-bronze-400 font-medium">{bento.stats[0].value}</span>
+                <span class="text-parchment-200/80">{bento.stats[0].label}</span>
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-parchment-50/8 border border-parchment-50/15 text-parchment-100 text-xs font-body">
+                <span class="text-golden-bronze-400 font-medium">{bento.stats[1].value}</span>
+                <span class="text-parchment-200/80">{bento.stats[1].label}</span>
+              </span>
+            </div>
           </div>
         </div>
 
         <!-- Mini 1 -->
-        <div class="relative rounded-md p-6 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
+        <div class="md:col-span-2 relative rounded-md p-6 md:p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
             <circle cx="12" cy="7" r="4"/>
@@ -346,7 +330,7 @@ const bento = isIT
         </div>
 
         <!-- Mini 2 -->
-        <div class="relative rounded-md p-6 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
+        <div class="md:col-span-2 relative rounded-md p-6 md:p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
             <circle cx="12" cy="12" r="9"/>
             <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
@@ -378,6 +362,7 @@ const bento = isIT
               <CtaButton
                 label={isIT ? 'Costruisci il tuo viaggio' : 'Build your trip'}
                 href={isIT ? '/contatti' : '/en/contatti'}
+                variant="solid"
                 size="sm"
               />
             </div>
@@ -419,7 +404,7 @@ const bento = isIT
         trigger: section,
         pin: stage,
         start: 'top top',
-        end: '+=260%',
+        end: '+=180%',
         scrub: 1.2,
         anticipatePin: 1,
         invalidateOnRefresh: true,

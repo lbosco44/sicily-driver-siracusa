@@ -1,4 +1,6 @@
 ---
+import CtaButton from './CtaButton.astro';
+
 interface Props {
   lang?: 'it' | 'en';
 }
@@ -59,21 +61,18 @@ const isIT = lang === 'it';
             : 'Thanks to our carefully selected fleet and attention to detail, we guarantee punctuality and courtesy on every trip. Our team consists of transportation professionals who understand the specific needs of our clients, ready to support you 24/7 throughout your journey.'}
         </p>
 
-        <!-- Fleet highlight -->
-        <div class="border-l-2 border-golden-bronze-500 pl-6 mb-8">
+        <!-- Fleet highlight (border removed — Impeccable absolute ban: side-stripe border) -->
+        <div class="mb-8 mt-2">
           <p class="font-display text-ink-black-900 text-2xl font-medium tracking-tight mb-1">Mercedes Classe V, GLB Premium, Classe E</p>
           <p class="text-ink-black-500 text-sm">{isIT ? 'La nostra flotta premium' : 'Our premium fleet'}</p>
         </div>
 
-        <a
+        <CtaButton
+          label={isIT ? 'Contattaci' : 'Contact Us'}
           href={isIT ? '/contatti' : '/en/contatti'}
-          class="inline-flex items-center gap-2 bg-deep-space-blue-900 hover:bg-deep-space-blue-800 text-parchment-50 font-medium px-7 py-4 rounded-sm transition-colors duration-200"
-        >
-          {isIT ? 'Contattaci' : 'Contact Us'}
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
+          variant="solid"
+          size="md"
+        />
       </div>
     </div>
   </div>

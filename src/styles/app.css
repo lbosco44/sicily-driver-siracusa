@@ -182,6 +182,21 @@ html.lenis { height: auto; }
   box-shadow: none;
 }
 
+/* Solid: stesso colore del primary ma senza animazione paper-plane.
+   Solo hover background-shift + subtle translate-y. */
+.cta-fly--solid {
+  background: var(--color-golden-bronze-500);
+  color: #ffffff;
+}
+.cta-fly--solid:hover {
+  background: var(--color-golden-bronze-600);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -10px rgba(196, 153, 59, 0.5);
+}
+.cta-fly--solid:active {
+  transform: translateY(0) scale(0.98);
+}
+
 .cta-fly-icon {
   position: absolute;
   left: 1.1em;

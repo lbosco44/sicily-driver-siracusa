@@ -9,6 +9,9 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="bg-ink-black-950 text-parchment-100 pt-20 pb-10">
+  <style>
+    .footer-logo img { filter: invert(1); }
+  </style>
   <div class="max-w-[1360px] mx-auto px-5 md:px-10">
 
     <!-- Main grid -->
@@ -16,8 +19,8 @@ const year = new Date().getFullYear();
 
       <!-- Brand column -->
       <div class="lg:col-span-1">
-        <a href={isIT ? '/' : '/en/'}>
-          <img src="/logo-white.svg" alt="Sicily Driver Siracusa" width="180" height="36" class="h-9 w-auto mb-6" loading="lazy" />
+        <a href={isIT ? '/' : '/en/'} class="footer-logo">
+          <img src="/logo-text.png" alt="Sicily Driver Siracusa" width="180" height="36" class="h-9 w-auto mb-6" loading="lazy" />
         </a>
         <p class="text-parchment-200 text-sm font-body leading-relaxed mb-6">
           {isIT
@@ -120,7 +123,7 @@ const year = new Date().getFullYear();
     <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-parchment-300">
       <p>© {year} Sicily Driver Siracusa. {isIT ? 'Tutti i diritti riservati.' : 'All rights reserved.'}</p>
       <div class="flex items-center gap-6">
-        <a href={isIT ? '/contatti' : '/en/contatti'} class="hover:text-golden-bronze-400 transition-colors">
+        <a href="mailto:info@ncctaxisiracusa.com?subject=Privacy%20Policy" class="hover:text-golden-bronze-400 transition-colors">
           {isIT ? 'Privacy Policy' : 'Privacy Policy'}
         </a>
         <span class="text-parchment-700">|</span>
