@@ -269,107 +269,118 @@ const bento = isIT
     </div>
   </div>
 
-  <!-- BENTO — Perché sceglierci -->
-  <div class="bg-deep-space-blue-900 py-20 md:py-28 border-t border-parchment-50/[0.06]">
-    <div class="max-w-[1360px] mx-auto px-5 md:px-10">
-      <div class="mb-12 md:mb-16 max-w-3xl">
-        <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.3em] uppercase mb-3">
+  <!-- MANIFESTO EDITORIALE — Perché sceglierci (was: bento grid AI slop) -->
+  <div class="bg-deep-space-blue-900 py-24 md:py-40 border-t border-parchment-50/[0.06] relative overflow-hidden">
+    <div class="max-w-[1360px] mx-auto px-5 md:px-10 relative">
+
+      <!-- Top intro (small, leaves room for manifesto) -->
+      <div class="mb-12 md:mb-16 flex items-baseline gap-8 md:gap-12">
+        <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.3em] uppercase shrink-0">
           {isIT ? 'I vantaggi' : 'The advantages'}
         </p>
-        <h3 class="font-display text-parchment-50 font-medium text-[clamp(32px,4vw,52px)] leading-[1.05] tracking-tight mb-4">
+        <div class="h-px flex-1 bg-parchment-50/15"></div>
+        <h3 class="font-display text-parchment-100 font-medium text-base md:text-lg tracking-tight italic shrink-0">
           {bento.headline}
         </h3>
-        <p class="text-parchment-100/70 text-base md:text-lg leading-relaxed">{bento.sub}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-[auto_auto] gap-4 md:gap-5">
+      <!-- MANIFESTO: huge typography + polaroid -->
+      <div class="grid grid-cols-12 gap-8 md:gap-12 items-end mb-20 md:mb-32">
 
-        <!-- BIG card: fleet, spans 2 col x 2 row (riformulato: include stats inline come pill — Impeccable V3) -->
-        <div class="md:col-span-2 md:row-span-2 relative rounded-md overflow-hidden group bg-deep-space-blue-950 border border-parchment-50/[0.08] min-h-[320px] md:min-h-[440px]">
-          <img
-            src={bento.big.img}
-            alt=""
-            class="absolute inset-0 w-full h-full object-cover object-center opacity-50 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-tr from-deep-space-blue-950/95 via-deep-space-blue-950/60 to-deep-space-blue-950/30"></div>
-          <div class="relative h-full p-7 md:p-10 flex flex-col justify-end">
-            <p class="text-golden-bronze-400 text-[11px] font-body font-medium tracking-[0.3em] uppercase mb-4">
-              {bento.big.kicker}
-            </p>
-            <h4 class="font-display text-parchment-50 font-medium text-[clamp(24px,2.6vw,38px)] leading-[1.1] tracking-tight mb-4 max-w-md">
-              {bento.big.title}
-            </h4>
-            <p class="text-parchment-100/85 text-base leading-relaxed mb-6 max-w-md">{bento.big.body}</p>
-            <!-- Stats inline pills (no hero-metric template) -->
-            <div class="flex flex-wrap gap-2.5">
-              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-parchment-50/8 border border-parchment-50/15 text-parchment-100 text-xs font-body">
-                <span class="text-golden-bronze-400 font-medium">{bento.stats[0].value}</span>
-                <span class="text-parchment-200/80">{bento.stats[0].label}</span>
-              </span>
-              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-parchment-50/8 border border-parchment-50/15 text-parchment-100 text-xs font-body">
-                <span class="text-golden-bronze-400 font-medium">{bento.stats[1].value}</span>
-                <span class="text-parchment-200/80">{bento.stats[1].label}</span>
-              </span>
+        <div class="col-span-12 md:col-span-8 relative">
+          <p class="text-golden-bronze-400 text-[11px] font-body font-medium tracking-[0.3em] uppercase mb-6">
+            <span class="text-parchment-50/40 mr-2">¶ 01</span>
+            {bento.big.kicker}
+          </p>
+          <h4 class="font-display text-parchment-50 font-medium leading-[0.94] tracking-[-0.02em] mb-8 text-[clamp(44px,8.5vw,128px)]">
+            {bento.big.title}
+          </h4>
+          <p class="text-parchment-100/80 text-lg md:text-xl leading-[1.55] max-w-xl mb-7">{bento.big.body}</p>
+          <p class="text-parchment-100/80 text-base leading-[1.55] max-w-xl mb-6 italic">{bento.sub}</p>
+          <!-- Stat coupling inline (was hero-metric template, now editorial annotation) -->
+          <div class="flex flex-wrap items-baseline gap-x-8 gap-y-3 text-parchment-100/85 text-sm">
+            <span class="inline-flex items-baseline gap-2.5">
+              <span class="font-display text-golden-bronze-400 text-2xl font-light leading-none">{bento.stats[0].value}</span>
+              <span class="tracking-wide">{bento.stats[0].label}</span>
+            </span>
+            <span class="w-px h-4 bg-parchment-50/20 self-center"></span>
+            <span class="inline-flex items-baseline gap-2.5">
+              <span class="font-display text-golden-bronze-400 text-2xl font-light leading-none">{bento.stats[1].value}</span>
+              <span class="tracking-wide">{bento.stats[1].label}</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Polaroid Mercedes (small, rotated, taped) -->
+        <div class="col-span-12 md:col-span-4 flex justify-center md:justify-end">
+          <figure class="polaroid relative w-[220px] md:w-[240px] aspect-[3/4] bg-parchment-50 p-3 pb-12 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]" style="transform: rotate(2.5deg);">
+            <span aria-hidden="true" class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-parchment-50/35" style="transform: translateX(-50%) rotate(-3deg);"></span>
+            <img
+              src={bento.big.img}
+              alt=""
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+            <figcaption class="absolute bottom-2 left-0 right-0 text-center font-display text-deep-space-blue-950 text-xs italic tracking-wide">— Mercedes Classe V —</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Marginalia: 2 numbered annotations, asymmetric placement -->
+      <div class="grid grid-cols-12 gap-x-8 md:gap-x-12 gap-y-14 md:gap-y-20 mb-20 md:mb-28">
+
+        <!-- ¶ 02 Autisti — left-aligned, col 1-7 -->
+        <div class="col-span-12 md:col-span-7">
+          <div class="flex items-start gap-5 md:gap-7">
+            <span class="font-display text-golden-bronze-500/45 text-5xl md:text-6xl font-light leading-none shrink-0 -mt-1">¶</span>
+            <div>
+              <p class="text-golden-bronze-400 text-[11px] font-body font-medium tracking-[0.3em] uppercase mb-3">¶ 02</p>
+              <h5 class="font-display text-parchment-50 font-medium text-[clamp(28px,3.4vw,44px)] leading-[1.05] tracking-tight mb-3">
+                {bento.mini[0].title}
+              </h5>
+              <p class="text-parchment-100/75 text-base md:text-lg leading-relaxed max-w-md">{bento.mini[0].body}</p>
             </div>
           </div>
         </div>
 
-        <!-- Mini 1 -->
-        <div class="md:col-span-2 relative rounded-md p-6 md:p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
-          <div>
-            <h5 class="font-display text-parchment-50 font-medium text-xl tracking-tight leading-tight mb-1.5">
-              {bento.mini[0].title}
-            </h5>
-            <p class="text-parchment-100/70 text-sm leading-relaxed">{bento.mini[0].body}</p>
-          </div>
-        </div>
-
-        <!-- Mini 2 -->
-        <div class="md:col-span-2 relative rounded-md p-6 md:p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
-          </svg>
-          <div>
-            <h5 class="font-display text-parchment-50 font-medium text-xl tracking-tight leading-tight mb-1.5">
-              {bento.mini[1].title}
-            </h5>
-            <p class="text-parchment-100/70 text-sm leading-relaxed">{bento.mini[1].body}</p>
-          </div>
-        </div>
-
-        <!-- Wide card: full width itineraries -->
-        <div class="md:col-span-4 relative rounded-md p-7 md:p-10 bg-gradient-to-br from-golden-bronze-500/15 to-deep-space-blue-950/30 border border-golden-bronze-500/25 hover:border-golden-bronze-500/50 transition-colors duration-300 overflow-hidden">
-          <div class="relative grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div class="md:col-span-1 hidden md:flex">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.5" aria-hidden="true">
-                <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/>
-                <path d="M9 3v15M15 6v15"/>
-              </svg>
+        <!-- ¶ 03 Multilingua — right-aligned, col 7-12 (asimmetria deliberata) -->
+        <div class="col-span-12 md:col-span-5 md:col-start-8 md:pt-12">
+          <div class="flex items-start gap-5 md:gap-7">
+            <span class="font-display text-golden-bronze-500/45 text-5xl md:text-6xl font-light leading-none shrink-0 -mt-1">¶</span>
+            <div>
+              <p class="text-golden-bronze-400 text-[11px] font-body font-medium tracking-[0.3em] uppercase mb-3">¶ 03</p>
+              <h5 class="font-display text-parchment-50 font-medium text-[clamp(28px,3.4vw,44px)] leading-[1.05] tracking-tight mb-3">
+                {bento.mini[1].title}
+              </h5>
+              <p class="text-parchment-100/75 text-base md:text-lg leading-relaxed max-w-md">{bento.mini[1].body}</p>
             </div>
-            <div class="md:col-span-8">
-              <h5 class="font-display text-parchment-50 font-medium text-[clamp(22px,2.2vw,32px)] tracking-tight leading-tight mb-2">
+          </div>
+        </div>
+      </div>
+
+      <!-- ¶ 04 Closing: itineraries — full width, manifesto-style with CTA -->
+      <div class="relative">
+        <div class="border-t border-parchment-50/15 pt-12 md:pt-16">
+          <p class="text-golden-bronze-400 text-[11px] font-body font-medium tracking-[0.3em] uppercase mb-6">¶ 04</p>
+          <div class="grid grid-cols-12 gap-8 md:gap-12 items-end">
+            <div class="col-span-12 md:col-span-8">
+              <h5 class="font-display text-parchment-50 font-medium leading-[1.0] tracking-[-0.015em] mb-6 text-[clamp(32px,5vw,64px)]">
                 {bento.wide.title}
               </h5>
-              <p class="text-parchment-100/75 text-base md:text-lg leading-relaxed">{bento.wide.body}</p>
+              <p class="text-parchment-100/80 text-lg leading-relaxed max-w-xl">{bento.wide.body}</p>
             </div>
-            <div class="md:col-span-3 md:text-right">
+            <div class="col-span-12 md:col-span-4 flex md:justify-end">
               <CtaButton
                 label={isIT ? 'Costruisci il tuo viaggio' : 'Build your trip'}
                 href={isIT ? '/contatti' : '/en/contatti'}
                 variant="solid"
-                size="sm"
+                size="md"
               />
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
 </section>
