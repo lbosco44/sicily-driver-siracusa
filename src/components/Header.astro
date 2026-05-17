@@ -39,21 +39,13 @@ const currentPath = Astro.url.pathname;
 >
   <div class="max-w-[1360px] mx-auto px-5 md:px-10 flex items-center justify-between h-16 md:h-20">
     <!-- Logo -->
-    <a href={isIT ? '/' : '/en/'} class="flex-shrink-0">
+    <a href={isIT ? '/' : '/en/'} class="flex-shrink-0 site-logo">
       <img
-        src="/logo-white.svg"
+        src="/logo-text.jpeg"
         alt="Sicily Driver Siracusa"
-        width="200"
-        height="40"
-        class="h-8 md:h-10 w-auto logo-white"
-        loading="eager"
-      />
-      <img
-        src="/logo-black.svg"
-        alt="Sicily Driver Siracusa"
-        width="200"
-        height="40"
-        class="h-8 md:h-10 w-auto logo-black hidden"
+        width="220"
+        height="44"
+        class="h-10 md:h-12 w-auto logo-img"
         loading="eager"
       />
     </a>
@@ -180,10 +172,19 @@ const currentPath = Astro.url.pathname;
     border-bottom: 1px solid rgba(11, 25, 40, 0.1);
   }
 
-  .logo-white { display: block; }
-  .logo-black { display: none; }
-  #site-header[data-variant="light"] .logo-white { display: none; }
-  #site-header[data-variant="light"] .logo-black { display: block; }
+  /* Logo background removal via blend mode.
+     Source JPEG is black text on white background.
+     On dark header: invert image (white text on black bg) + screen blend → text appears white, black bg vanishes.
+     On light header (scrolled or variant=light): multiply blend → black text stays, white bg vanishes. */
+  .site-logo .logo-img {
+    filter: invert(1);
+    mix-blend-mode: screen;
+  }
+  #site-header[data-variant="light"] .site-logo .logo-img,
+  #site-header.scrolled[data-variant="light"] .site-logo .logo-img {
+    filter: none;
+    mix-blend-mode: multiply;
+  }
 </style>
 
 <script>
