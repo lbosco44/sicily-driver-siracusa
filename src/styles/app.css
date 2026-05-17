@@ -131,8 +131,7 @@ html.lenis { height: auto; }
   line-height: 1.2;
   background: var(--color-golden-bronze-500);
   color: #ffffff;
-  padding: 0.85em 1.4em;
-  padding-left: 1.1em;
+  padding: 0.85em 1.4em 0.85em 2.6em;
   display: inline-flex;
   align-items: center;
   border: 1px solid transparent;
@@ -154,14 +153,17 @@ html.lenis { height: auto; }
 
 .cta-fly--lg {
   font-size: 1rem;
-  padding: 1em 1.75em;
-  padding-left: 1.4em;
+  padding: 1em 1.75em 1em 2.9em;
 }
 .cta-fly--sm {
   font-size: 0.875rem;
-  padding: 0.65em 1.1em;
-  padding-left: 0.9em;
+  padding: 0.65em 1.1em 0.65em 2.2em;
 }
+
+/* No-icon variant: reset padding, disable hover slide */
+.cta-fly--no-icon { padding: 0.85em 1.4em; }
+.cta-fly--lg.cta-fly--no-icon { padding: 1em 1.75em; }
+.cta-fly--sm.cta-fly--no-icon { padding: 0.65em 1.1em; }
 
 .cta-fly--outline {
   background: transparent;
@@ -175,29 +177,48 @@ html.lenis { height: auto; }
 }
 
 .cta-fly-icon {
+  position: absolute;
+  left: 1.1em;
+  top: 50%;
   display: inline-flex;
-  transform-origin: center;
+  transform: translateY(-50%);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.cta-fly--lg .cta-fly-icon { left: 1.4em; }
+.cta-fly--sm .cta-fly-icon { left: 0.85em; }
+
+.cta-fly-icon-bounce {
+  display: inline-flex;
 }
 .cta-fly svg {
   display: block;
   transform-origin: center;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .cta-fly-label {
   display: inline-block;
-  margin-left: 0.5em;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 .cta-fly:hover .cta-fly-icon {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cta-fly:hover .cta-fly-icon-bounce {
   animation: ctaFlyBounce 0.6s ease-in-out infinite alternate;
 }
 .cta-fly:hover svg {
-  transform: translateX(1.3em) rotate(45deg) scale(1.1);
+  transform: rotate(45deg) scale(1.1);
 }
 .cta-fly:hover .cta-fly-label {
   transform: translateX(200%);
   opacity: 0;
+}
+
+.cta-fly--no-icon:hover .cta-fly-label {
+  transform: none;
+  opacity: 1;
 }
 
 @keyframes ctaFlyBounce {
@@ -206,7 +227,8 @@ html.lenis { height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cta-fly:hover .cta-fly-icon { animation: none; }
+  .cta-fly:hover .cta-fly-icon-bounce { animation: none; }
+  .cta-fly:hover .cta-fly-icon { left: 1.1em; transform: translateY(-50%); }
   .cta-fly:hover svg,
   .cta-fly:hover .cta-fly-label { transform: none; opacity: 1; }
 }

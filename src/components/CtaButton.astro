@@ -5,6 +5,7 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
   variant?: 'primary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
+  showIcon?: boolean;
   class?: string;
   ariaLabel?: string;
 }
@@ -15,33 +16,50 @@ const {
   type = 'button',
   variant = 'primary',
   size = 'md',
+  showIcon,
   class: extraClass = '',
   ariaLabel,
 } = Astro.props;
 
-const classes = ['cta-fly', `cta-fly--${variant}`, `cta-fly--${size}`, extraClass]
+const renderIcon = showIcon ?? variant !== 'outline';
+
+const classes = [
+  'cta-fly',
+  `cta-fly--${variant}`,
+  `cta-fly--${size}`,
+  renderIcon ? '' : 'cta-fly--no-icon',
+  extraClass,
+]
   .filter(Boolean)
   .join(' ');
 ---
 
 {href ? (
   <a href={href} class={classes} aria-label={ariaLabel}>
-    <span class="cta-fly-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
-      </svg>
-    </span>
+    {renderIcon && (
+      <span class="cta-fly-icon">
+        <span class="cta-fly-icon-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
+          </svg>
+        </span>
+      </span>
+    )}
     <span class="cta-fly-label">{label}</span>
   </a>
 ) : (
   <button type={type} class={classes} aria-label={ariaLabel}>
-    <span class="cta-fly-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
-    </svg>
-    </span>
+    {renderIcon && (
+      <span class="cta-fly-icon">
+        <span class="cta-fly-icon-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
+          </svg>
+        </span>
+      </span>
+    )}
     <span class="cta-fly-label">{label}</span>
   </button>
 )}

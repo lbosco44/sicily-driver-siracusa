@@ -111,10 +111,12 @@ export default function ContactForm({ lang = 'it' }: Props) {
           className="cta-fly cta-fly--primary cta-fly--lg disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <span className="cta-fly-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-              <path fill="none" d="M0 0h24v24H0z"/>
-              <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
-            </svg>
+            <span className="cta-fly-icon-bounce">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
+              </svg>
+            </span>
           </span>
           <span className="cta-fly-label">
             {status === 'sending'
