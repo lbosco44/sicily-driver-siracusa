@@ -1,70 +1,83 @@
 @import "tailwindcss";
 
 @theme {
-  /* INK BLACK — testi, sfondi scuri */
-  --color-ink-black-50: #eff2f6;
-  --color-ink-black-100: #dee5ed;
-  --color-ink-black-200: #bdcbdb;
-  --color-ink-black-300: #9cb0c9;
-  --color-ink-black-400: #7b96b7;
-  --color-ink-black-500: #5b7ca4;
-  --color-ink-black-600: #486384;
-  --color-ink-black-700: #364a63;
-  --color-ink-black-800: #243242;
-  --color-ink-black-900: #121921;
-  --color-ink-black-950: #0d1117;
+  /* INK WARM — testi e sfondi scuri tinted bruno caldo (era ink-black) */
+  --color-ink-black-50: #f1ede4;
+  --color-ink-black-100: #e3dccb;
+  --color-ink-black-200: #c8bda6;
+  --color-ink-black-300: #ad9d80;
+  --color-ink-black-400: #927e5a;
+  --color-ink-black-500: #786448;
+  --color-ink-black-600: #5e4f38;
+  --color-ink-black-700: #4a3e2c;
+  --color-ink-black-800: #38301f;
+  --color-ink-black-900: #2a2419;
+  --color-ink-black-950: #1a1410;
 
-  /* DEEP SPACE BLUE — navy dominante */
-  --color-deep-space-blue-50: #ebf2f9;
-  --color-deep-space-blue-100: #d7e5f4;
-  --color-deep-space-blue-200: #afcbe9;
-  --color-deep-space-blue-300: #88b1dd;
-  --color-deep-space-blue-400: #6097d2;
-  --color-deep-space-blue-500: #387dc7;
-  --color-deep-space-blue-600: #2d649f;
-  --color-deep-space-blue-700: #224b77;
-  --color-deep-space-blue-800: #163250;
-  --color-deep-space-blue-900: #0b1928;
-  --color-deep-space-blue-950: #08121c;
+  /* INDACO — sfondi scuri (era deep-space-blue navy). Indaco profondo viola */
+  --color-deep-space-blue-50: #ecebf3;
+  --color-deep-space-blue-100: #d8d6e6;
+  --color-deep-space-blue-200: #b1adcd;
+  --color-deep-space-blue-300: #8a84b3;
+  --color-deep-space-blue-400: #635a9a;
+  --color-deep-space-blue-500: #463e7a;
+  --color-deep-space-blue-600: #383164;
+  --color-deep-space-blue-700: #2a2848;
+  --color-deep-space-blue-800: #221f3a;
+  --color-deep-space-blue-900: #1a1830;
+  --color-deep-space-blue-950: #14122a;
 
-  /* PARCHMENT — avorio caldo sfondo */
-  --color-parchment-50: #f9f4ec;
-  --color-parchment-100: #f2e9d9;
-  --color-parchment-200: #e6d3b3;
-  --color-parchment-300: #d9bd8c;
-  --color-parchment-400: #cca766;
-  --color-parchment-500: #bf9140;
-  --color-parchment-600: #997433;
-  --color-parchment-700: #735726;
-  --color-parchment-800: #4d3a19;
-  --color-parchment-900: #261d0d;
-  --color-parchment-950: #1b1409;
+  /* LINO — sfondo chiaro caldo dominante (era parchment) */
+  --color-parchment-50: #f4eee2;
+  --color-parchment-100: #ede6d4;
+  --color-parchment-200: #dbd0b8;
+  --color-parchment-300: #cab89b;
+  --color-parchment-400: #b8a07f;
+  --color-parchment-500: #a08664;
+  --color-parchment-600: #806b50;
+  --color-parchment-700: #60503c;
+  --color-parchment-800: #403628;
+  --color-parchment-900: #201b14;
+  --color-parchment-950: #15110d;
 
-  /* OLD LACE — alternativa avorio */
-  --color-old-lace-50: #f8f4ec;
-  --color-old-lace-100: #f2e9d9;
-  --color-old-lace-200: #e4d3b4;
-  --color-old-lace-300: #d7be8e;
-  --color-old-lace-400: #caa868;
-  --color-old-lace-500: #bd9242;
-  --color-old-lace-600: #977535;
-  --color-old-lace-700: #715828;
-  --color-old-lace-800: #4b3a1b;
-  --color-old-lace-900: #261d0d;
-  --color-old-lace-950: #1a1409;
+  /* OLD LACE — alias light surface (mantenuta in linea con parchment) */
+  --color-old-lace-50: #f4eee2;
+  --color-old-lace-100: #ede6d4;
+  --color-old-lace-200: #dbd0b8;
+  --color-old-lace-300: #cab89b;
+  --color-old-lace-400: #b8a07f;
+  --color-old-lace-500: #a08664;
+  --color-old-lace-600: #806b50;
+  --color-old-lace-700: #60503c;
+  --color-old-lace-800: #403628;
+  --color-old-lace-900: #201b14;
+  --color-old-lace-950: #15110d;
 
-  /* GOLDEN BRONZE — accenti CTA */
-  --color-golden-bronze-50: #f9f5eb;
-  --color-golden-bronze-100: #f3ebd8;
-  --color-golden-bronze-200: #e8d6b0;
-  --color-golden-bronze-300: #dcc289;
-  --color-golden-bronze-400: #d0ad62;
-  --color-golden-bronze-500: #c4993b;
-  --color-golden-bronze-600: #9d7a2f;
-  --color-golden-bronze-700: #765c23;
-  --color-golden-bronze-800: #4f3d17;
-  --color-golden-bronze-900: #271f0c;
-  --color-golden-bronze-950: #1b1508;
+  /* CHAMPAGNE — accenti CTA (era golden-bronze). Pallido, meno saturo */
+  --color-golden-bronze-50: #f5f1e6;
+  --color-golden-bronze-100: #ebe3cc;
+  --color-golden-bronze-200: #d7c89e;
+  --color-golden-bronze-300: #c4ac72;
+  --color-golden-bronze-400: #d4c08a;
+  --color-golden-bronze-500: #b8a474;
+  --color-golden-bronze-600: #8a7656;
+  --color-golden-bronze-700: #6b5c44;
+  --color-golden-bronze-800: #4d4231;
+  --color-golden-bronze-900: #2b251c;
+  --color-golden-bronze-950: #1a1612;
+
+  /* TERRACOTTA — accent raro (NEW). Sole, lava, sicilia. Massimo 5% del sito */
+  --color-terracotta-50: #f8ebe2;
+  --color-terracotta-100: #f0d4c2;
+  --color-terracotta-200: #e0a784;
+  --color-terracotta-300: #d27e54;
+  --color-terracotta-400: #c47049;
+  --color-terracotta-500: #b56a3c;
+  --color-terracotta-600: #95572f;
+  --color-terracotta-700: #6f4124;
+  --color-terracotta-800: #4a2c18;
+  --color-terracotta-900: #28170c;
+  --color-terracotta-950: #170d07;
 
   /* TIPOGRAFIA */
   --font-display: "Fraunces", "Times New Roman", serif;
@@ -151,7 +164,7 @@ html.lenis { height: auto; }
 }
 .cta-fly:hover {
   background: var(--color-golden-bronze-600);
-  box-shadow: 0 12px 28px -10px rgba(196, 153, 59, 0.55);
+  box-shadow: 0 12px 28px -10px rgba(184, 164, 116, 0.6); /* champagne-500 */
 }
 .cta-fly:active {
   transform: scale(0.97);
@@ -191,7 +204,7 @@ html.lenis { height: auto; }
 .cta-fly--solid:hover {
   background: var(--color-golden-bronze-600);
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px -10px rgba(196, 153, 59, 0.5);
+  box-shadow: 0 10px 22px -10px rgba(184, 164, 116, 0.55); /* champagne-500 */
 }
 .cta-fly--solid:active {
   transform: translateY(0) scale(0.98);

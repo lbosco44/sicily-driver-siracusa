@@ -158,37 +158,37 @@ const currentPath = Astro.url.pathname;
   }
 
   #site-header .nav-link {
-    color: rgba(249, 244, 236, 0.85);
+    color: rgba(244, 238, 226, 0.85); /* lino-50 */
   }
   #site-header .nav-link:hover,
   #site-header .nav-link-active {
-    color: #d0ad62;
+    color: #d4c08a; /* champagne-400 */
   }
   #site-header .cta-btn {
-    background: #c4993b;
+    background: #b8a474; /* champagne-500 */
     color: white;
   }
   #site-header .cta-btn:hover {
-    background: #9d7a2f;
+    background: #8a7656; /* champagne-600 */
   }
 
-  /* Scrolled state: navy bg */
+  /* Scrolled state: indaco bg */
   #site-header.scrolled {
-    background: rgba(11, 25, 40, 0.985);
-    border-bottom: 1px solid rgba(208, 173, 98, 0.15);
+    background: rgba(20, 18, 42, 0.985); /* indaco-950 */
+    border-bottom: 1px solid rgba(212, 192, 138, 0.18); /* champagne-400 */
   }
 
-  /* Light variant (for parchment pages) */
+  /* Light variant (for parchment/lino pages) */
   #site-header[data-variant="light"] .nav-link {
-    color: rgba(18, 25, 33, 0.75);
+    color: rgba(42, 36, 25, 0.78); /* ink-warm-900 */
   }
   #site-header[data-variant="light"] .nav-link:hover,
   #site-header[data-variant="light"] .nav-link-active {
-    color: #9d7a2f;
+    color: #8a7656; /* champagne-600 */
   }
   #site-header[data-variant="light"].scrolled {
-    background: rgba(249, 244, 236, 0.97);
-    border-bottom: 1px solid rgba(11, 25, 40, 0.1);
+    background: rgba(244, 238, 226, 0.97); /* lino-50 */
+    border-bottom: 1px solid rgba(42, 36, 25, 0.12); /* ink-warm-900 */
   }
 
   /* Language toggle (Uiverse-style) — flag-circle slides between IT/EN */
@@ -213,8 +213,8 @@ const currentPath = Astro.url.pathname;
   .lang-slider {
     position: absolute;
     inset: 0;
-    background: rgba(11, 25, 40, 0.55);
-    border: 1px solid rgba(208, 173, 98, 0.45);
+    background: rgba(20, 18, 42, 0.6); /* indaco-950 */
+    border: 1px solid rgba(212, 192, 138, 0.5); /* champagne-400 */
     border-radius: 999px;
     transition: background 0.3s, border-color 0.3s;
   }
@@ -245,10 +245,10 @@ const currentPath = Astro.url.pathname;
     pointer-events: none;
   }
   .lang-toggle:hover .lang-slider {
-    border-color: rgba(208, 173, 98, 0.75);
+    border-color: rgba(212, 192, 138, 0.8); /* champagne-400 */
   }
   #site-header[data-variant="light"] .lang-slider {
-    background: rgba(11, 25, 40, 0.85);
+    background: rgba(20, 18, 42, 0.88); /* indaco-950 su lino */
   }
 
   /* Logo: PNG transparente, black text. Invert solo su sfondo scuro per renderlo bianco. */
