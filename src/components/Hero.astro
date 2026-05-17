@@ -6,6 +6,7 @@ interface Props {
   lang?: 'it' | 'en';
   h1?: string;
   tagline?: string;
+  motto?: string;
   ctaPrimary?: { label: string; href: string };
   ctaSecondary?: { label: string; href: string };
   compact?: boolean;
@@ -15,6 +16,7 @@ const {
   lang = 'it',
   h1 = 'Sicily Driver Siracusa',
   tagline,
+  motto,
   ctaPrimary,
   ctaSecondary,
   compact = false,
@@ -53,18 +55,23 @@ const {
   <div class="absolute inset-0 bg-gradient-to-b from-deep-space-blue-950/40 via-deep-space-blue-950/20 to-deep-space-blue-950/80"></div>
   <div class="absolute inset-0 bg-gradient-to-r from-deep-space-blue-950/60 via-transparent to-transparent"></div>
 
-  <!-- Content -->
-  <div class="relative z-10 flex flex-col justify-end min-h-screen pb-20 md:pb-28 px-5 md:px-10 max-w-[1360px] mx-auto">
+  <!-- Content (centered, vertical) -->
+  <div class="relative z-10 flex flex-col justify-center min-h-screen px-5 md:px-10 max-w-[1360px] mx-auto">
     {!compact && (
-      <div class="max-w-4xl" style="animation: fadeUp 1.2s ease-out both;">
+      <div class="max-w-5xl" style="animation: fadeUp 1.2s ease-out both;">
         {tagline && (
-          <p class="text-golden-bronze-400 text-xs md:text-sm font-body font-medium tracking-[0.25em] uppercase mb-6 opacity-90">
+          <p class="text-golden-bronze-400 text-xs md:text-sm font-body font-medium tracking-[0.3em] uppercase mb-7 opacity-90">
             {tagline}
           </p>
         )}
-        <h1 class="font-display text-white font-medium leading-[0.95] mb-8 text-[clamp(48px,10vw,128px)] tracking-tight">
+        <h1 class="font-display text-white font-medium leading-[0.95] mb-6 md:mb-8 text-[clamp(48px,10vw,128px)] tracking-tight">
           {h1}
         </h1>
+        {motto && (
+          <p class="hero-motto font-display italic text-[clamp(20px,2.4vw,32px)] leading-tight mb-10 max-w-3xl">
+            <span class="hero-motto-text">{motto}</span>
+          </p>
+        )}
         <div class="flex flex-col sm:flex-row gap-4">
           {ctaPrimary && (
             <CtaButton label={ctaPrimary.label} href={ctaPrimary.href} variant="primary" size="lg" />
@@ -104,7 +111,44 @@ const {
     animation: kenBurns 20s ease-in-out infinite alternate;
     will-change: transform;
   }
+
+  /* Motto with gold shimmer sweep */
+  .hero-motto {
+    color: rgba(249, 244, 236, 0.92);
+    letter-spacing: 0.005em;
+    animation: mottoFade 1.6s ease-out 0.25s both;
+  }
+  .hero-motto-text {
+    background: linear-gradient(
+      100deg,
+      rgba(249, 244, 236, 0.85) 0%,
+      rgba(249, 244, 236, 0.85) 35%,
+      #e6c374 50%,
+      rgba(249, 244, 236, 0.85) 65%,
+      rgba(249, 244, 236, 0.85) 100%
+    );
+    background-size: 220% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: mottoShimmer 5.5s ease-in-out 1.5s infinite;
+  }
+
+  @keyframes mottoFade {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes mottoShimmer {
+    0%   { background-position: 200% 0; }
+    50%  { background-position: -100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .ken-burns { animation: none; }
+    .hero-motto-text { animation: none; -webkit-text-fill-color: rgba(249, 244, 236, 0.92); color: rgba(249, 244, 236, 0.92); }
+    .hero-motto { animation: none; }
   }
 </style>

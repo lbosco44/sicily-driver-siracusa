@@ -82,6 +82,52 @@ const servizi = isIT
         cta: { label: 'Talk to us', href: '/en/contatti' },
       },
     ];
+
+const bento = isIT
+  ? {
+      headline: 'Perché sceglierci',
+      sub: 'Quattro motivi concreti per affidarti a Sicily Driver.',
+      big: {
+        kicker: 'La nostra flotta',
+        title: 'Mercedes premium, manutenzione ossessiva',
+        body: 'Classe V, GLB e Classe E. Veicoli sanificati prima di ogni servizio, sempre puntuali.',
+        img: '/images/servizi-01-transfer.webp',
+      },
+      stats: [
+        { value: '24/7', label: 'Disponibilità servizio' },
+        { value: '100%', label: 'Clienti soddisfatti' },
+      ],
+      mini: [
+        { title: 'Autisti certificati', body: 'Esperienza, riservatezza, divisa impeccabile.' },
+        { title: 'Multilingua', body: 'Italiano, inglese e francese a bordo.' },
+      ],
+      wide: {
+        title: 'Itinerari su misura, dal primo contatto alla destinazione',
+        body: 'Costruiamo il viaggio con te. Tu dici quando e dove, noi ci pensiamo a tutto il resto: orari, soste, soste foto, ristoranti.',
+      },
+    }
+  : {
+      headline: 'Why choose us',
+      sub: 'Four concrete reasons to trust Sicily Driver.',
+      big: {
+        kicker: 'Our fleet',
+        title: 'Premium Mercedes, obsessive maintenance',
+        body: 'V-Class, GLB and E-Class. Vehicles sanitized before every service, always on time.',
+        img: '/images/servizi-01-transfer.webp',
+      },
+      stats: [
+        { value: '24/7', label: 'Service availability' },
+        { value: '100%', label: 'Happy clients' },
+      ],
+      mini: [
+        { title: 'Certified drivers', body: 'Experience, discretion, impeccable presentation.' },
+        { title: 'Multilingual', body: 'Italian, English and French on board.' },
+      ],
+      wide: {
+        title: 'Tailor-made itineraries from first contact to destination',
+        body: 'We build the journey with you. You say when and where, we handle the rest: timing, photo stops, restaurants.',
+      },
+    };
 ---
 
 <section
@@ -89,73 +135,51 @@ const servizi = isIT
   class="servizi-section bg-deep-space-blue-950 relative"
   aria-label={isIT ? 'I nostri servizi' : 'Our services'}
 >
-  <!-- DESKTOP: pinned scroll-driven scene -->
+
+  <!-- DESKTOP — pinned split scene: text left, contained image right -->
   <div class="servizi-pin hidden md:block relative">
     <div class="servizi-stage relative w-full h-screen overflow-hidden">
 
-      <!-- Background images stacked (crossfade) -->
-      <div class="absolute inset-0">
-        {servizi.map((s, i) => (
-          <div
-            class="servizi-bg absolute inset-0"
-            data-slide={i}
-            style={`opacity:${i === 0 ? 1 : 0};`}
-          >
-            <img
-              src={s.img}
-              alt={s.alt}
-              class="absolute inset-0 w-full h-full object-cover object-center"
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
-            <div class="absolute inset-0 bg-gradient-to-r from-deep-space-blue-950/90 via-deep-space-blue-950/65 to-deep-space-blue-950/40"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-deep-space-blue-950/80 via-transparent to-deep-space-blue-950/20"></div>
-          </div>
-        ))}
-      </div>
-
-      <!-- Section label top-left -->
-      <div class="absolute top-24 left-10 z-10">
+      <!-- Top label -->
+      <div class="absolute top-24 left-10 z-20">
         <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.3em] uppercase">
           02 — {isIT ? 'Il Servizio' : 'Our Service'}
         </p>
+        <h2 class="font-display text-parchment-50 font-medium text-[clamp(28px,3vw,44px)] leading-tight tracking-tight mt-3">
+          {isIT ? 'I nostri Servizi' : 'Our Services'}
+        </h2>
       </div>
 
-      <!-- BIG ghost number per slide -->
-      <div class="absolute inset-0 flex items-center pointer-events-none" aria-hidden="true">
-        <div class="relative w-full max-w-[1360px] mx-auto px-10">
-          {servizi.map((s, i) => (
-            <span
-              class="servizi-bignum absolute font-display font-light leading-none text-parchment-50/[0.07] select-none"
-              data-slide={i}
-              style={`opacity:${i === 0 ? 1 : 0}; font-size: clamp(280px, 38vw, 560px); right: 4vw; top: 50%; transform: translateY(-50%);`}
-            >
-              {s.num}
-            </span>
-          ))}
+      <!-- Vertical thin progress line (left edge, subtle) -->
+      <div class="absolute left-10 top-1/2 -translate-y-1/2 z-20" aria-hidden="true">
+        <div class="relative w-px h-40 bg-parchment-50/10">
+          <div class="servizi-progress-fill absolute top-0 left-0 w-full bg-golden-bronze-500" style="height: 0%;"></div>
         </div>
       </div>
 
-      <!-- Slide content -->
-      <div class="absolute inset-0 flex items-center">
-        <div class="relative w-full max-w-[1360px] mx-auto px-10 z-10">
-          <div class="max-w-2xl">
-            {servizi.map((s, i) => (
-              <div
-                class="servizi-slide"
-                data-slide={i}
-                style={`opacity:${i === 0 ? 1 : 0}; transform: translateY(${i === 0 ? '0' : '32px'}); position:${i === 0 ? 'relative' : 'absolute'}; inset:${i === 0 ? 'auto' : '0'};`}
-              >
+      <!-- Stage grid -->
+      <div class="relative w-full h-full max-w-[1360px] mx-auto px-10 grid grid-cols-12 gap-10 items-center">
+
+        <!-- TEXT column -->
+        <div class="col-span-7 relative" style="min-height: 480px;">
+          {servizi.map((s, i) => (
+            <div
+              class="servizi-slide"
+              data-slide={i}
+              style={`opacity:${i === 0 ? 1 : 0}; transform: translateY(${i === 0 ? '0' : '32px'}); position: absolute; inset: 0; top: 50%; transform-origin: left center;`}
+            >
+              <div style="position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);">
                 <p class="text-golden-bronze-400 text-sm font-body font-medium tracking-[0.25em] uppercase mb-5">
                   {s.kicker}
                 </p>
-                <h3 class="font-display text-parchment-50 font-medium text-[clamp(40px,5.5vw,72px)] leading-[1.02] tracking-tight mb-6">
+                <h3 class="font-display text-parchment-50 font-medium text-[clamp(36px,4.5vw,60px)] leading-[1.05] tracking-tight mb-6 max-w-2xl">
                   {s.h2}
                 </h3>
                 {'body' in s && s.body && (
                   <p class="text-parchment-100/85 text-lg leading-relaxed mb-8 max-w-xl">{s.body}</p>
                 )}
                 {'items' in s && s.items && (
-                  <ul class="space-y-3 mb-8">
+                  <ul class="space-y-3 mb-8 max-w-xl">
                     {s.items.map((item) => (
                       <li class="flex items-start gap-3 text-parchment-100/85">
                         <span class="w-1.5 h-1.5 rounded-full bg-golden-bronze-500 mt-2.5 flex-shrink-0"></span>
@@ -168,33 +192,33 @@ const servizi = isIT
                   <CtaButton label={s.cta.label} href={s.cta.href} size="md" />
                 )}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </div>
 
-      <!-- Progress indicator (bottom) -->
-      <div class="absolute bottom-12 left-10 right-10 z-20">
-        <div class="flex items-center gap-6 max-w-[1360px] mx-auto">
-          <div class="flex items-center gap-3" aria-hidden="true">
+        <!-- IMAGE column (contained card, not full screen) -->
+        <div class="col-span-5 relative">
+          <div class="relative aspect-[4/5] w-full max-w-md ml-auto rounded-sm overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 bg-deep-space-blue-900"></div>
             {servizi.map((s, i) => (
-              <span
-                class="servizi-dot block h-px transition-all duration-500"
+              <img
+                src={s.img}
+                alt={s.alt}
+                class="servizi-bg-img absolute inset-0 w-full h-full object-cover object-center"
                 data-slide={i}
-                style={`width:${i === 0 ? '64px' : '24px'}; background-color:${i === 0 ? '#c4993b' : 'rgba(249,244,236,0.25)'};`}
-              ></span>
+                style={`opacity:${i === 0 ? 1 : 0};`}
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
             ))}
+            <div class="absolute inset-0 ring-1 ring-parchment-50/10 rounded-sm pointer-events-none"></div>
           </div>
-          <p class="text-parchment-200/70 text-xs font-body tracking-[0.2em] uppercase">
-            <span class="servizi-counter">01</span> / 03
-          </p>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 
-  <!-- MOBILE: stacked simple cards -->
+  <!-- MOBILE: stacked cards -->
   <div class="md:hidden">
     <div class="max-w-[1360px] mx-auto px-5 py-20">
       <div class="mb-12">
@@ -208,7 +232,7 @@ const servizi = isIT
 
       <div class="space-y-14">
         {servizi.map((s) => (
-          <div class="servizi-mobile-card group">
+          <div class="servizi-mobile-card">
             <div class="relative aspect-[4/5] rounded-sm overflow-hidden mb-5">
               <img
                 src={s.img}
@@ -217,9 +241,6 @@ const servizi = isIT
                 loading="lazy"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-deep-space-blue-950/80 via-transparent to-transparent"></div>
-              <span class="absolute top-4 left-5 font-display text-parchment-50/40 text-7xl font-light leading-none select-none" aria-hidden="true">
-                {s.num}
-              </span>
               <div class="absolute bottom-5 left-5 right-5">
                 <p class="text-golden-bronze-400 text-xs tracking-[0.25em] uppercase mb-2">{s.kicker}</p>
                 <h3 class="font-display text-parchment-50 font-medium text-2xl leading-tight tracking-tight">
@@ -241,59 +262,138 @@ const servizi = isIT
                 ))}
               </ul>
             )}
-            {s.cta && (
-              <CtaButton label={s.cta.label} href={s.cta.href} size="sm" />
-            )}
+            {s.cta && <CtaButton label={s.cta.label} href={s.cta.href} size="sm" />}
           </div>
         ))}
       </div>
     </div>
   </div>
 
-  <!-- Why choose us -->
+  <!-- BENTO — Perché sceglierci -->
   <div class="bg-deep-space-blue-900 py-20 md:py-28 border-t border-parchment-50/[0.06]">
     <div class="max-w-[1360px] mx-auto px-5 md:px-10">
-      <h3 class="font-display text-parchment-50 font-medium text-[clamp(24px,3vw,40px)] tracking-tight mb-10">
-        {isIT ? 'Perché Sceglierci?' : 'Why choose us?'}
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-        {(isIT ? [
-          'Autisti certificati e multilingue',
-          'Veicoli sempre sanificati e controllati',
-          'Assistenza 24/7 e supporto clienti dedicato',
-          'Itinerari esclusivi e personalizzati',
-        ] : [
-          'Certified, English-speaking drivers',
-          'Mercedes vehicles, sanitized and checked',
-          '24/7 assistance and fast confirmations',
-          'Exclusive, tailor-made itineraries',
-        ]).map((item) => (
-          <div class="flex items-start gap-4 p-6 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] rounded-sm">
-            <div class="w-8 h-8 rounded-full bg-golden-bronze-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="2.5" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5"/>
+      <div class="mb-12 md:mb-16 max-w-3xl">
+        <p class="text-golden-bronze-400 text-xs font-body font-medium tracking-[0.3em] uppercase mb-3">
+          {isIT ? 'I vantaggi' : 'The advantages'}
+        </p>
+        <h3 class="font-display text-parchment-50 font-medium text-[clamp(32px,4vw,52px)] leading-[1.05] tracking-tight mb-4">
+          {bento.headline}
+        </h3>
+        <p class="text-parchment-100/70 text-base md:text-lg leading-relaxed">{bento.sub}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-[auto_auto_auto] gap-4 md:gap-5">
+
+        <!-- BIG card: fleet, spans 2 col x 2 row -->
+        <div class="md:col-span-2 md:row-span-2 relative rounded-md overflow-hidden group bg-deep-space-blue-950 border border-parchment-50/[0.08] min-h-[320px] md:min-h-[440px]">
+          <img
+            src={bento.big.img}
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover object-center opacity-50 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-deep-space-blue-950/95 via-deep-space-blue-950/60 to-deep-space-blue-950/30"></div>
+          <div class="relative h-full p-7 md:p-10 flex flex-col justify-end">
+            <p class="text-golden-bronze-400 text-[11px] font-body font-medium tracking-[0.3em] uppercase mb-4">
+              {bento.big.kicker}
+            </p>
+            <h4 class="font-display text-parchment-50 font-medium text-[clamp(24px,2.6vw,38px)] leading-[1.1] tracking-tight mb-4 max-w-md">
+              {bento.big.title}
+            </h4>
+            <p class="text-parchment-100/85 text-base leading-relaxed max-w-md">{bento.big.body}</p>
+          </div>
+        </div>
+
+        <!-- Stat 1 -->
+        <div class="relative rounded-md p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col justify-between min-h-[160px] hover:border-golden-bronze-500/30 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+          <div>
+            <p class="font-display font-light text-parchment-50 text-[44px] md:text-[56px] leading-none mb-1 tracking-tight">
+              {bento.stats[0].value}
+            </p>
+            <p class="text-parchment-200/70 text-xs tracking-wide">{bento.stats[0].label}</p>
+          </div>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="relative rounded-md p-7 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col justify-between min-h-[160px] hover:border-golden-bronze-500/30 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
+            <path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11z" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-display font-light text-parchment-50 text-[44px] md:text-[56px] leading-none mb-1 tracking-tight">
+              {bento.stats[1].value}
+            </p>
+            <p class="text-parchment-200/70 text-xs tracking-wide">{bento.stats[1].label}</p>
+          </div>
+        </div>
+
+        <!-- Mini 1 -->
+        <div class="relative rounded-md p-6 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <div>
+            <h5 class="font-display text-parchment-50 font-medium text-xl tracking-tight leading-tight mb-1.5">
+              {bento.mini[0].title}
+            </h5>
+            <p class="text-parchment-100/70 text-sm leading-relaxed">{bento.mini[0].body}</p>
+          </div>
+        </div>
+
+        <!-- Mini 2 -->
+        <div class="relative rounded-md p-6 bg-deep-space-blue-950/60 border border-parchment-50/[0.08] flex flex-col gap-3 hover:border-golden-bronze-500/30 transition-colors duration-300">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
+          </svg>
+          <div>
+            <h5 class="font-display text-parchment-50 font-medium text-xl tracking-tight leading-tight mb-1.5">
+              {bento.mini[1].title}
+            </h5>
+            <p class="text-parchment-100/70 text-sm leading-relaxed">{bento.mini[1].body}</p>
+          </div>
+        </div>
+
+        <!-- Wide card: full width itineraries -->
+        <div class="md:col-span-4 relative rounded-md p-7 md:p-10 bg-gradient-to-br from-golden-bronze-500/15 to-deep-space-blue-950/30 border border-golden-bronze-500/25 hover:border-golden-bronze-500/50 transition-colors duration-300 overflow-hidden">
+          <div class="relative grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div class="md:col-span-1 hidden md:flex">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#d0ad62" stroke-width="1.5" aria-hidden="true">
+                <path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3V6z"/>
+                <path d="M9 3v15M15 6v15"/>
               </svg>
             </div>
-            <p class="text-parchment-100/90 text-sm leading-relaxed font-medium">{item}</p>
+            <div class="md:col-span-8">
+              <h5 class="font-display text-parchment-50 font-medium text-[clamp(22px,2.2vw,32px)] tracking-tight leading-tight mb-2">
+                {bento.wide.title}
+              </h5>
+              <p class="text-parchment-100/75 text-base md:text-lg leading-relaxed">{bento.wide.body}</p>
+            </div>
+            <div class="md:col-span-3 md:text-right">
+              <CtaButton
+                label={isIT ? 'Costruisci il tuo viaggio' : 'Build your trip'}
+                href={isIT ? '/contatti' : '/en/contatti'}
+                size="sm"
+              />
+            </div>
           </div>
-        ))}
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .servizi-bg img {
-    transform: scale(1.04);
-    transition: transform 6s ease-out;
-  }
-  .servizi-bg[data-active="true"] img {
-    transform: scale(1);
-  }
   .servizi-slide,
-  .servizi-bg,
-  .servizi-bignum {
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  .servizi-bg-img,
+  .servizi-progress-fill {
+    will-change: opacity, transform, height;
   }
 </style>
 
@@ -306,57 +406,36 @@ const servizi = isIT
   const stage = document.querySelector<HTMLElement>('.servizi-stage');
   if (section && stage && window.matchMedia('(min-width: 768px)').matches) {
     const slides = stage.querySelectorAll<HTMLElement>('.servizi-slide');
-    const bgs = stage.querySelectorAll<HTMLElement>('.servizi-bg');
-    const bignums = stage.querySelectorAll<HTMLElement>('.servizi-bignum');
-    const dots = stage.querySelectorAll<HTMLElement>('.servizi-dot');
-    const counter = stage.querySelector<HTMLElement>('.servizi-counter');
+    const bgs = stage.querySelectorAll<HTMLElement>('.servizi-bg-img');
+    const progressFill = stage.querySelector<HTMLElement>('.servizi-progress-fill');
 
-    const slideCount = slides.length;
+    gsap.set(slides, { opacity: 0, y: 32 });
+    gsap.set(slides[0], { opacity: 1, y: 0 });
+    gsap.set(bgs, { opacity: 0 });
+    gsap.set(bgs[0], { opacity: 1 });
 
-    // Set initial bg active
-    bgs[0]?.setAttribute('data-active', 'true');
-
-    function activate(idx: number) {
-      slides.forEach((s, i) => {
-        const active = i === idx;
-        s.style.opacity = active ? '1' : '0';
-        s.style.transform = active ? 'translateY(0)' : 'translateY(32px)';
-        s.style.pointerEvents = active ? 'auto' : 'none';
-      });
-      bgs.forEach((b, i) => {
-        b.style.opacity = i === idx ? '1' : '0';
-        if (i === idx) b.setAttribute('data-active', 'true');
-        else b.removeAttribute('data-active');
-      });
-      bignums.forEach((n, i) => {
-        const active = i === idx;
-        n.style.opacity = active ? '1' : '0';
-        n.style.transform = `translateY(-50%) translateX(${active ? '0' : '40px'})`;
-      });
-      dots.forEach((d, i) => {
-        d.style.width = i === idx ? '64px' : '24px';
-        d.style.backgroundColor = i === idx ? '#c4993b' : 'rgba(249,244,236,0.25)';
-      });
-      if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
-    }
-
-    let currentIdx = 0;
-    ScrollTrigger.create({
-      trigger: section,
-      pin: stage,
-      start: 'top top',
-      end: `+=${(slideCount) * 100}%`,
-      anticipatePin: 1,
-      onUpdate: (self) => {
-        const idx = Math.min(
-          slideCount - 1,
-          Math.floor(self.progress * slideCount * 0.9999)
-        );
-        if (idx !== currentIdx) {
-          currentIdx = idx;
-          activate(idx);
-        }
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        pin: stage,
+        start: 'top top',
+        end: '+=260%',
+        scrub: 1.2,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
       },
     });
+
+    tl.to(progressFill, { height: '100%', duration: 1, ease: 'none' }, 0);
+
+    tl.to(slides[0], { opacity: 0, y: -28, duration: 0.18, ease: 'power2.inOut' }, 0.30)
+      .to(slides[1], { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out' }, 0.32)
+      .to(bgs[0], { opacity: 0, duration: 0.20, ease: 'power2.inOut' }, 0.30)
+      .to(bgs[1], { opacity: 1, duration: 0.20, ease: 'power2.out' }, 0.32);
+
+    tl.to(slides[1], { opacity: 0, y: -28, duration: 0.18, ease: 'power2.inOut' }, 0.65)
+      .to(slides[2], { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out' }, 0.67)
+      .to(bgs[1], { opacity: 0, duration: 0.20, ease: 'power2.inOut' }, 0.65)
+      .to(bgs[2], { opacity: 1, duration: 0.20, ease: 'power2.out' }, 0.67);
   }
 </script>
