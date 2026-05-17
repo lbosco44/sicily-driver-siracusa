@@ -173,8 +173,7 @@ const currentPath = Astro.url.pathname;
 
   /* Scrolled state: navy bg */
   #site-header.scrolled {
-    background: rgba(11, 25, 40, 0.97);
-    backdrop-filter: blur(12px);
+    background: rgba(11, 25, 40, 0.985);
     border-bottom: 1px solid rgba(208, 173, 98, 0.15);
   }
 
@@ -243,18 +242,13 @@ const currentPath = Astro.url.pathname;
     background: rgba(11, 25, 40, 0.85);
   }
 
-  /* Logo background removal via blend mode.
-     Source JPEG is black text on white background.
-     On dark header: invert image (white text on black bg) + screen blend → text appears white, black bg vanishes.
-     On light header (scrolled or variant=light): multiply blend → black text stays, white bg vanishes. */
+  /* Logo: PNG transparente, black text. Invert solo su sfondo scuro per renderlo bianco. */
   .site-logo .logo-img {
     filter: invert(1);
-    mix-blend-mode: screen;
   }
   #site-header[data-variant="light"] .site-logo .logo-img,
   #site-header.scrolled[data-variant="light"] .site-logo .logo-img {
     filter: none;
-    mix-blend-mode: multiply;
   }
 </style>
 
